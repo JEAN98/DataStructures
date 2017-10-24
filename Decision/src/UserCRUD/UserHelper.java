@@ -49,14 +49,8 @@ public class UserHelper {
       String result = ""; 
        if(root!= null){
           UserModel aux = root;
-          if(aux.getId() == id){
-              result += "Name: "+aux.getName() + "\n";
-              result += "ID: "+ aux.getId() + "\n";
-              result += "Age: "+ aux.getAge() + "\n";
-              result += "Gender: "+ aux.getGender() + "\n";
-          }
-          aux = aux.getNext();
-          while(aux != root && aux.getId() != id){
+          
+          while(aux.getNext() != root && aux.getId() != id){
               aux = aux.getNext();
           }
           if(aux.getId() == id){
@@ -94,5 +88,31 @@ public class UserHelper {
           result += "Name: "+aux.getName() + "\n";
        }
       return result;
+   }
+   
+   /**
+    * Here we can updated the information of every user
+    * @param id search by old id
+    * @param name
+    * @param newid
+    * @param age
+    * @param gender
+    * @param password 
+    */
+   public void updateInformation(String id,String name,String newid,int age, String gender, String password)
+   { 
+       if(root!= null){
+          UserModel aux = root;
+          while(aux.getNext() != root && aux.getId() != id){
+              aux = aux.getNext();
+          }
+          if(aux.getId() == id){
+             aux.setId(newid);
+             aux.setName(name);
+             aux.setAge(age);
+             aux.setGender(gender);
+             aux.setPassword(password);
+          }
+       }
    }
 }

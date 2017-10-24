@@ -14,6 +14,10 @@ public class Decision {
       user.create("Lu", "3", 21, "F", "12");
       
       System.out.println(user.printAllUsers());
+      
+     user.updateInformation("1", "JeanCarlo", "1324", 194, "Ma", "123466666");
+       System.out.println(user.printAllUsers());
+        System.out.println(user.printUserbyID("1324"));
     }
     
 }
