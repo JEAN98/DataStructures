@@ -116,6 +116,11 @@ public class UserHelper {
           }
        }
    }
+  /**
+   * In this part we can verify credentials of user, only in the case if both attributes are good.
+   * @param password
+   * @return 
+   */
    public Boolean verifyCredentials(String id,String password){
        if(root != null){
            UserModel temp = root;
