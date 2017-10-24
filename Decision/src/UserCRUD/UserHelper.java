@@ -1,6 +1,7 @@
 
 package UserCRUD;
 
+import Decision.NodoModel;
 import Decision.UserModel;
 
 /**
@@ -115,4 +116,17 @@ public class UserHelper {
           }
        }
    }
+   public Boolean verifyCredentials(String id,String password){
+       if(root != null){
+           UserModel temp = root;
+           while(temp.getNext() != root && temp.getId() != id){
+               temp = temp.getNext();
+           }
+           if(temp.getId() == id && temp.getPassword() == password){
+               return true;
+           }
+       }
+       return false;
+   }
+     
 }
