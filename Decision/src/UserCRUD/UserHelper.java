@@ -40,6 +40,11 @@ public class UserHelper {
            root.setBefore(newUser);
        }
    }
+   /**
+    * Here we can print user information by ID
+    * @param id
+    * @return 
+    */
    public String printUserbyID(String id){
       String result = ""; 
        if(root!= null){
@@ -63,6 +68,10 @@ public class UserHelper {
        }
       return result;
    }
+   /**
+    * Here we can print all information about every user
+    * @return 
+    */
    public String printAllUsers(){
       String result ="";
        if(root!= null){
