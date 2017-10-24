@@ -2,17 +2,17 @@
 package code;
 
 
-public class User {
+public class UserModel {
  private String name;
  private String id;
  private int age;
  private String gender;
  private String password;
- private User next;
- private User before;
- private Nodo tree;
+ private UserModel next;
+ private UserModel before;
+ private NodoModel tree;
 
-    public User(String name,String id,int age, String gender, String password) {
+    public UserModel(String name,String id,int age, String gender, String password) {
         this.name = name;
         this.id = id;
         this.age = age;
@@ -63,27 +63,27 @@ public class User {
         this.password = password;
     }
 
-    public User getNext() {
+    public UserModel getNext() {
         return next;
     }
 
-    public void setNext(User next) {
+    public void setNext(UserModel next) {
         this.next = next;
     }
 
-    public User getBefore() {
+    public UserModel getBefore() {
         return before;
     }
 
-    public void setBefore(User before) {
+    public void setBefore(UserModel before) {
         this.before = before;
     }
 
-    public Nodo getTree() {
+    public NodoModel getTree() {
         return tree;
     }
 
-    public void setTree(Nodo tree) {
+    public void setTree(NodoModel tree) {
         this.tree = tree;
     }
  

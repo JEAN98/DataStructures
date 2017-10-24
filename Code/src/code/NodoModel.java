@@ -4,12 +4,12 @@ package code;
 import java.util.List;
 
 
-public class Nodo {
+public class NodoModel {
   private int id;
   private String description;
-  private List<Nodo> nodoList;
+  private List<NodoModel> nodoList;
 
-    public Nodo(int id,String description) {
+    public NodoModel(int id,String description) {
         this.id = id;
         this.description = description;
         this.nodoList = null;
@@ -31,11 +31,11 @@ public class Nodo {
         this.description = description;
     }
 
-    public List<Nodo> getNodoList() {
+    public List<NodoModel> getNodoList() {
         return nodoList;
     }
 
-    public void setNodoList(List<Nodo> nodoList) {
+    public void setNodoList(List<NodoModel> nodoList) {
         this.nodoList = nodoList;
     }
   
