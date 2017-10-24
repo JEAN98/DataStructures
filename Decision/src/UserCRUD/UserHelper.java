@@ -1,7 +1,7 @@
 
 package UserCRUD;
 
-import code.UserModel;
+import Decision.UserModel;
 
 /**
  *

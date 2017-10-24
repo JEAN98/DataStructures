@@ -1,5 +1,5 @@
 
-package code;
+package Decision;
 
 
 public class UserModel {
