@@ -41,7 +41,7 @@ public class Decision extends Application {
 
         primaryStage.show();
         
-        login.start();
+        login.start(this);
     }
 
     /**

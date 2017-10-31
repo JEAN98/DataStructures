@@ -5,13 +5,18 @@
  */
 package decision.ui;
 
+import decision.Decision;
+import decision.Sex;
+import decision.User;
 import java.io.IOException;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -60,6 +65,8 @@ public class Login extends BorderPane {
     @FXML
     private RadioButton singupMale;
 
+    Decision decision;
+
     public Login() {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -79,9 +86,49 @@ public class Login extends BorderPane {
 
     @FXML
     private void initialize() {
+
+        singupButtom.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                singUp();
+            }
+        });
+
+        loginButtom.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                login();
+            }
+        });
+
     }
 
-    public void start() {
+    public void start(Decision decision) {
+
+        this.decision = decision;
         loginButtom.requestFocus();
+    }
+
+    private void login() {
+
+        System.out.println("Login");
+    }
+
+    private void singUp() {
+        
+        if (singupPassword.getText().equals(singupConfirmPassword.getText())) {
+            
+            User newUser = new User(
+                    singupFullName.getText(),
+                    singupDNI.getText(),
+                    Short.parseShort(singupAge.getText()),
+                    Sex.Male,
+                    singupPassword.getText()
+            );
+        }
     }
 }

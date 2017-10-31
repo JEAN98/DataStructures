@@ -12,6 +12,7 @@ package decision;
 public class UserControl {
 
     private User root;
+    private User session;
 
     public UserControl() {
 
@@ -23,28 +24,32 @@ public class UserControl {
      *
      * @param newUser
      */
-    public void insertUser(User newUser) {
+    public void addUser(User newUser) {
+
         if (root == null) {
-            newUser.setPrevious(newUser);
+
             root = newUser;
         } else {
+
             User aux = root;
-            while (aux.getNext() != root) {
+
+            while (aux.getNext() != null) {
+
                 aux = aux.getNext();
             }
+
             aux.setNext(newUser);
             newUser.setPrevious(aux);
-            newUser.setNext(root);
-            root.setPrevious(newUser);
         }
     }
+
     /**
      * Update information of user
+     *
      * @param id
-     * @param currentUser 
+     * @param currentUser
      */
-     public void updateInformation(String id,User currentUser)
-    { 
+    public void updateInformation(String id, User currentUser) {
         if (root != null) {
             User aux = root;
             while (aux.getNext() != root && aux.getDni() != id) {
@@ -66,23 +71,30 @@ public class UserControl {
     }
 
     /**
-     * 
-     * @param id
+     *
+     * @param dni
      * @param password
-     * @return 
+     * @return
      */
-     public Boolean verifyCredentials(String id,String password){
-       if(root != null){
-           User temp = root;
-           while(temp.getNext() != root && temp.getDni() != id){
-               temp = temp.getNext();
-           }
-           if(temp.getDni()== id && temp.getPassword() == password){
-               return true;
-           }
-       }
-       return false;
-   }
+    public Boolean login(String dni, String password) {
+
+        if (root != null) {
+
+            User temp = root;
+
+            while (temp != null) {
+
+                if (temp.getDni().equals(dni) && temp.getPassword().equals(password)) {
+
+                    this.session = temp;
+                    return true;
+                }
+
+                temp = temp.getNext();
+            }
+        }
+        return false;
+    }
 
     /**
      * Closes the current session.
@@ -90,4 +102,21 @@ public class UserControl {
     public void closeSession() {
 
     }
-  }
+
+    public User getRoot() {
+        return root;
+    }
+
+    public void setRoot(User root) {
+        this.root = root;
+    }
+
+    public User getSession() {
+        return session;
+    }
+
+    public void setSession(User session) {
+        this.session = session;
+    }
+
+}
