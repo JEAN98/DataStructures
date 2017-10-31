@@ -11,11 +11,11 @@ package decision;
  */
 public class UserControl {
 
-    private User userSession;
+    private User root;
 
     public UserControl() {
 
-        this.userSession = null;
+        this.root = null;
     }
 
     /**
@@ -23,8 +23,37 @@ public class UserControl {
      *
      * @param newUser
      */
-    public void addUser(User newUser) {
-
+    public void insertUser(User newUser) {
+        if (root == null) {
+            newUser.setPrevious(newUser);
+            root = newUser;
+        } else {
+            User aux = root;
+            while (aux.getNext() != root) {
+                aux = aux.getNext();
+            }
+            aux.setNext(newUser);
+            newUser.setPrevious(aux);
+            newUser.setNext(root);
+            root.setPrevious(newUser);
+        }
+    }
+    /**
+     * Update information of user
+     * @param id
+     * @param currentUser 
+     */
+     public void updateInformation(String id,User currentUser)
+    { 
+        if (root != null) {
+            User aux = root;
+            while (aux.getNext() != root && aux.getDni() != id) {
+                aux = aux.getNext();
+            }
+            if (aux.getDni() == id) {
+                aux = currentUser;
+            }
+        }
     }
 
     /**
@@ -37,14 +66,23 @@ public class UserControl {
     }
 
     /**
-     * Init session whit the dni and password.
-     *
-     * @param dni
+     * 
+     * @param id
      * @param password
+     * @return 
      */
-    public void login(String dni, String password) {
-
-    }
+     public Boolean verifyCredentials(String id,String password){
+       if(root != null){
+           User temp = root;
+           while(temp.getNext() != root && temp.getDni() != id){
+               temp = temp.getNext();
+           }
+           if(temp.getDni()== id && temp.getPassword() == password){
+               return true;
+           }
+       }
+       return false;
+   }
 
     /**
      * Closes the current session.
@@ -52,13 +90,4 @@ public class UserControl {
     public void closeSession() {
 
     }
-
-    public User getUserSession() {
-        return userSession;
-    }
-
-    public void setUserSession(User userSession) {
-        this.userSession = userSession;
-    }
-
-}
+  }

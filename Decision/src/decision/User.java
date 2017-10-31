@@ -16,6 +16,8 @@ public class User {
     private short age;
     private Sex sex;
     private String password;
+    private User next;
+    private User previous;
     private final ListOfTree listOfTree;
 
     /**
@@ -33,6 +35,9 @@ public class User {
         this.sex = sex;
         this.password = password;
         this.listOfTree = null;
+        this.previous = null;
+        this.next = null;
+                
     }
 
     /**
@@ -86,4 +91,22 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public User getNext() {
+        return next;
+    }
+
+    public void setNext(User next) {
+        this.next = next;
+    }
+
+    public User getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(User previous) {
+        this.previous = previous;
+    }
+    
+    
 }
