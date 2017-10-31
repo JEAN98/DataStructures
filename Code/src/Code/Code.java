@@ -1,10 +1,10 @@
 
-package Decision;
+package Code;
 
 import UserCRUD.UserHelper;
 
 
-public class Decision {
+public class Code {
 
    
     public static void main(String[] args) {
