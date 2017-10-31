@@ -5,11 +5,14 @@
  */
 package decision;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -20,24 +23,17 @@ import javafx.stage.Stage;
 public class Decision extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    public void start(Stage primaryStage) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(Decision.class.getResource("/decision/means/Login.fxml"));
+        loader.load();
+        
+        Scene scene = new Scene(loader.<ScrollPane>getRoot(), 720, 480);
+        scene.getStylesheets().add("/decision/means/bootstrap3.css");
+        scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-        Scene scene = new Scene(root, 300, 250);
-
-        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 

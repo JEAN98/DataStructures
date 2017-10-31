@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31-oct-2017, 9:55:01
+    Author     : kenma
+*/
+.logo {
+
+    -fx-font-size: 32pt;
+    -fx-font-family: "Lobster";
+}
+.loginBackground {
+
+    /*-fx-background-image: url("/decision/means/vector.jpg");*/
+    -fx-background-position: center center;
+}
