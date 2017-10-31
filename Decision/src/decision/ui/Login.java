@@ -8,6 +8,7 @@ package decision.ui;
 import decision.Decision;
 import decision.Sex;
 import decision.User;
+import decision.UserControl;
 import java.io.IOException;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -65,7 +66,8 @@ public class Login extends BorderPane {
     @FXML
     private RadioButton singupMale;
 
-    Decision decision;
+    private Decision decision;
+    private UserControl userControl;
 
     public Login() {
 
@@ -110,25 +112,44 @@ public class Login extends BorderPane {
     public void start(Decision decision) {
 
         this.decision = decision;
+        this.userControl = this.decision.getUserControl();
+        
         loginButtom.requestFocus();
     }
 
     private void login() {
 
-        System.out.println("Login");
+        if(userControl.login(loginDNI.getText(), loginPassword.getText())){
+        
+            System.out.println("Login");
+        }
     }
 
     private void singUp() {
         
         if (singupPassword.getText().equals(singupConfirmPassword.getText())) {
             
+            Sex sexUser = null;
+            
+            if(singupMale == this.sex.getSelectedToggle()){
+                
+                sexUser = Sex.Male; 
+            } else { 
+            
+                sexUser = Sex.Female;
+            }
+            
             User newUser = new User(
                     singupFullName.getText(),
                     singupDNI.getText(),
                     Short.parseShort(singupAge.getText()),
-                    Sex.Male,
+                    sexUser,
                     singupPassword.getText()
             );
+            
+            System.out.println(sexUser);
+            
+            userControl.addUser(newUser);
         }
     }
 }
