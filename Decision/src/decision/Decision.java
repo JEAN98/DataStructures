@@ -5,15 +5,13 @@
  */
 package decision;
 
+import decision.ui.Login;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -22,19 +20,28 @@ import javafx.stage.Stage;
  */
 public class Decision extends Application {
 
+    BorderPane root;
+    Scene scene;
+        Login login;
+
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
-        FXMLLoader loader = new FXMLLoader(Decision.class.getResource("/decision/means/Login.fxml"));
-        loader.load();
-        
-        Scene scene = new Scene(loader.<ScrollPane>getRoot(), 720, 480);
+
+        root = new BorderPane();
+        login = new Login();
+
+        root.setCenter(login);
+
+        scene = new Scene(root, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
         primaryStage.setScene(scene);
 
         primaryStage.show();
+        
+        login.start();
     }
 
     /**
