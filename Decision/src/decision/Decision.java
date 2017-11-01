@@ -29,12 +29,11 @@ public class Decision extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        
-
         root = new BorderPane();
+        
         initSystem();
         initUILogin();
-        
+
         scene = new Scene(root, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
@@ -45,12 +44,12 @@ public class Decision extends Application {
     }
 
     private void initUILogin() throws IOException {
-        
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Decision.class.getResource("/decision/means/Login.fxml"));
         BorderPane start = (BorderPane) loader.load();
         root.setCenter(start);
-        
+
         LoginController loginController = loader.getController();
         loginController.start(this);
 
