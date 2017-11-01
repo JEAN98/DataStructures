@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<javafx.scene.layout.BorderPane fx:id="root_pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="decision.controllers.LoginController">
+<fx:root fx:id="root_pane" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <BorderPane prefHeight="48.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <right>
@@ -19,7 +19,7 @@
                <children>
                   <TextField fx:id="loginDNI" promptText="DNI" />
                   <TextField fx:id="loginPassword" promptText="Password" />
-                  <Button fx:id="loginButtom" mnemonicParsing="false" onAction="#logIn" styleClass="success" text="Login" />
+                  <Button fx:id="loginButtom" mnemonicParsing="false" styleClass="success" text="Login" />
                </children>
             </HBox>
          </right>
@@ -64,7 +64,7 @@
                   <TextField fx:id="singupConfirmPassword" promptText="Confirm Password" />
                   <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Button fx:id="singupButtom" mnemonicParsing="false" onAction="#SingUp" styleClass="info" text="SingUp" />
+                        <Button fx:id="singupButtom" mnemonicParsing="false" styleClass="info" text="SingUp" />
                      </children>
                   </HBox>
                </children>
@@ -78,4 +78,4 @@
          </padding>
       </VBox>
    </right>
-</javafx.scene.layout.BorderPane>
+</fx:root>
