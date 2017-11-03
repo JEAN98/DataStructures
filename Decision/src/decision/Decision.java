@@ -24,13 +24,13 @@ public class Decision extends Application {
     private BorderPane rootLogin;
     private BorderPane rootView;
     private Scene scene;
-    Stage myStage;
-    BorderPane login;
-    BorderPane topBar;
+    private Stage myStage;
+    private BorderPane login;
+    private BorderPane topBar;
 
     //Controller
-    LoginController loginController;
-    TopBarController topBarController;
+    private LoginController loginController;
+    private TopBarController topBarController;
 
     //System
     private UserControl userControl;
@@ -50,8 +50,7 @@ public class Decision extends Application {
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
         myStage = primaryStage;
-        myStage.setMinHeight(480);
-        myStage.setMinWidth(720);
+        myStage.setResizable(false);
         myStage.setScene(scene);
         myStage.show();
 
@@ -114,6 +113,62 @@ public class Decision extends Application {
 
     public void setUserControl(UserControl userControl) {
         this.userControl = userControl;
+    }
+
+    public Stage getMyStage() {
+        return myStage;
+    }
+
+    public void setMyStage(Stage myStage) {
+        this.myStage = myStage;
+    }
+
+    public BorderPane getLogin() {
+        return login;
+    }
+
+    public void setLogin(BorderPane login) {
+        this.login = login;
+    }
+
+    public BorderPane getTopBar() {
+        return topBar;
+    }
+
+    public void setTopBar(BorderPane topBar) {
+        this.topBar = topBar;
+    }
+
+    public LoginController getLoginController() {
+        return loginController;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    public TopBarController getTopBarController() {
+        return topBarController;
+    }
+
+    public void setTopBarController(TopBarController topBarController) {
+        this.topBarController = topBarController;
+    }
+
+    public BorderPane getRootLogin() {
+        return rootLogin;
+    }
+
+    public void setRootLogin(BorderPane rootLogin) {
+        this.rootLogin = rootLogin;
+    }
+
+    public BorderPane getRootView() {
+        return rootView;
+    }
+
+    public void setRootView(BorderPane rootView) {
+        this.rootView = rootView;
     }
 
 }

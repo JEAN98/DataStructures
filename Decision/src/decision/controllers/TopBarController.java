@@ -48,6 +48,9 @@ public class TopBarController implements Initializable {
     private Button searchButtom;
 
     Decision decision;
+    private BorderPane treeView;
+    private Object MyTreeViewController;
+
     /**
      * Initializes the controller class.
      */
@@ -71,16 +74,21 @@ public class TopBarController implements Initializable {
 
     @FXML
     private void myTrees(ActionEvent event) {
+
+        decision.getRootView().setCenter(treeView);
+        searchtextField.setVisible(true);
+        searchButtom.setVisible(true);
     }
 
     @FXML
     private void catalogsTree(ActionEvent event) {
+
     }
 
     public void start(Decision decision) {
 
         this.decision = decision;
-        
+
         try {
             initUI();
         } catch (IOException ex) {
@@ -91,13 +99,11 @@ public class TopBarController implements Initializable {
 
     private void initUI() throws IOException {
 
-//        //Build login
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(Decision.class.getResource("/decision/means/Login.fxml"));
-//        this.tree = (BorderPane) loader.load();
-//
-//        loginController = loader.getController();
-//        loginController.start(this);
+        //Build login
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Decision.class.getResource("/decision/means/MyTreeView.fxml"));
+        this.treeView = (BorderPane) loader.load();
 
+        MyTreeViewController = loader.getController();
     }
 }
