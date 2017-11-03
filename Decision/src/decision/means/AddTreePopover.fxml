@@ -9,8 +9,8 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="decision.controllers.AddTreePopoverController">
    <children>
-      <TextField fx:id="questionTxt" promptText="Question to which the tree responds." />
-      <TextArea fx:id="descriptionTxt" prefHeight="200.0" prefWidth="200.0" promptText="Description of the decision tree." />
+      <TextField fx:id="questionTxt" focusTraversable="false" promptText="Question to which the tree responds." />
+      <TextArea fx:id="descriptionTxt" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" promptText="Description of the decision tree." />
       <HBox alignment="CENTER_RIGHT">
          <children>
             <Button mnemonicParsing="false" onAction="#addTree" styleClass="success" text="Add Tree" />
