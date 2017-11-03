@@ -50,6 +50,8 @@ public class Decision extends Application {
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
         myStage = primaryStage;
+        myStage.setMinHeight(480);
+        myStage.setMinWidth(720);
         myStage.setScene(scene);
         myStage.show();
 
@@ -84,16 +86,11 @@ public class Decision extends Application {
         rootLogin.setCenter(this.login);
     }
 
-    public void showProhile() {
-        rootView.setCenter(this.login);
-    }
-
-    public void showTree() {
-        rootView.setCenter(this.login);
-    }
-
-    public void showCatalog() {
-        rootView.setCenter(this.login);
+    public void showView() {
+        
+        rootView.setTop(this.topBar);
+        scene.setRoot(rootView);
+        
     }
 
     /**

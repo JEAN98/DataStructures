@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<javafx.scene.layout.BorderPane fx:id="root_pane" prefHeight="48.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="decision.controllers.TopBarController">
+<javafx.scene.layout.BorderPane fx:id="root_pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="decision.controllers.TopBarController">
    <center>
       <HBox alignment="CENTER" prefWidth="240.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,8 @@
    <left>
       <HBox alignment="CENTER_LEFT" prefWidth="240.0" spacing="10.0">
          <children>
-            <Button fx:id="backButtom" mnemonicParsing="false" onAction="#back" text="Back" />
+            <Button fx:id="backButtom" mnemonicParsing="false" onAction="#back" text="Back" visible="false" />
+            <Button mnemonicParsing="false" text="Button" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
@@ -41,8 +42,8 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefWidth="240.0">
                <children>
-                  <TextField fx:id="searchtextField" prefWidth="150.0" styleClass="first" />
-                  <Button fx:id="searchButtom" mnemonicParsing="false" onAction="#search" prefWidth="60.0" styleClass="last" text="Search" />
+                  <TextField fx:id="searchtextField" prefWidth="140.0" styleClass="first" visible="false" />
+                  <Button fx:id="searchButtom" mnemonicParsing="false" onAction="#search" prefWidth="70.0" styleClass="last" text="Search" visible="false" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" />

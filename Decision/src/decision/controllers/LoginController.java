@@ -77,6 +77,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logIn(ActionEvent event) {
+        
+        decision.showView();
+        
          if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
 
             System.out.println("Login");

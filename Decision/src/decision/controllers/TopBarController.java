@@ -6,10 +6,14 @@
 package decision.controllers;
 
 import decision.Decision;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -43,14 +47,15 @@ public class TopBarController implements Initializable {
     @FXML
     private Button searchButtom;
 
+    Decision decision;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         
-    }    
+
+    }
 
     @FXML
     private void search(ActionEvent event) {
@@ -72,7 +77,27 @@ public class TopBarController implements Initializable {
     private void catalogsTree(ActionEvent event) {
     }
 
-    public void start(Decision aThis) {
+    public void start(Decision decision) {
+
+        this.decision = decision;
+        
+        try {
+            initUI();
+        } catch (IOException ex) {
+            Logger.getLogger(TopBarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
+    private void initUI() throws IOException {
+
+//        //Build login
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(Decision.class.getResource("/decision/means/Login.fxml"));
+//        this.tree = (BorderPane) loader.load();
+//
+//        loginController = loader.getController();
+//        loginController.start(this);
+
+    }
 }
