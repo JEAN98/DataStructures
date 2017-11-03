@@ -5,6 +5,7 @@
  */
 package decision.controllers;
 
+import decision.Decision;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -69,6 +70,9 @@ public class TopBarController implements Initializable {
 
     @FXML
     private void catalogsTree(ActionEvent event) {
+    }
+
+    public void start(Decision aThis) {
     }
     
 }

@@ -6,6 +6,7 @@
 package decision;
 
 import decision.controllers.LoginController;
+import decision.controllers.TopBarController;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +21,16 @@ import javafx.stage.Stage;
 public class Decision extends Application {
 
     //UI
-    private BorderPane root;
+    private BorderPane rootLogin;
+    private BorderPane rootView;
     private Scene scene;
+    Stage myStage;
+    BorderPane login;
+    BorderPane topBar;
+
+    //Controller
+    LoginController loginController;
+    TopBarController topBarController;
 
     //System
     private UserControl userControl;
@@ -29,29 +38,40 @@ public class Decision extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        root = new BorderPane();
-        
-        initSystem();
-        initUILogin();
+        rootLogin = new BorderPane();
+        rootView = new BorderPane();
 
-        scene = new Scene(root, 720, 480);
+        initSystem();
+        initUI();
+        showLogin();
+
+        scene = new Scene(rootLogin, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        myStage = primaryStage;
+        myStage.setScene(scene);
+        myStage.show();
 
     }
 
-    private void initUILogin() throws IOException {
+    private void initUI() throws IOException {
 
+        //Build login
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Decision.class.getResource("/decision/means/Login.fxml"));
-        BorderPane start = (BorderPane) loader.load();
-        root.setCenter(start);
+        this.login = (BorderPane) loader.load();
 
-        LoginController loginController = loader.getController();
+        loginController = loader.getController();
         loginController.start(this);
+
+        //Build top bar
+        FXMLLoader loader2 = new FXMLLoader();
+        loader2.setLocation(Decision.class.getResource("/decision/means/TopBar.fxml"));
+        this.topBar = (BorderPane) loader2.load();
+
+        topBarController = loader2.getController();
+        topBarController.start(this);
 
     }
 
@@ -60,19 +80,27 @@ public class Decision extends Application {
         userControl = new UserControl();
     }
 
+    public void showLogin() {
+        rootLogin.setCenter(this.login);
+    }
+
+    public void showProhile() {
+        rootView.setCenter(this.login);
+    }
+
+    public void showTree() {
+        rootView.setCenter(this.login);
+    }
+
+    public void showCatalog() {
+        rootView.setCenter(this.login);
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public BorderPane getRoot() {
-        return root;
-    }
-
-    public void setRoot(BorderPane root) {
-        this.root = root;
     }
 
     public Scene getScene() {
