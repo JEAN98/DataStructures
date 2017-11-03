@@ -80,6 +80,7 @@ public class LoginController implements Initializable {
         
         decision.showView();
         
+        
          if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
 
             System.out.println("Login");

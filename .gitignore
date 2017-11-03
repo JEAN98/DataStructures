@@ -24,3 +24,9 @@ hs_err_pid*
 /Decision/build/
 /Decision/dist/
 /Code/nbproject/private/
+/Toasts/nbproject/private/
+/Toasts/dist/
+/Toasts/build/
+/Bootstrap/nbproject/private/
+/Bootstrap/dist/
+/Bootstrap/build/
