@@ -54,4 +54,10 @@ public class TreeNode {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public void getShorRoutebyLeafYes(){
+        
+    }
+ 
+    
 }

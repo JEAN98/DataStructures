@@ -43,31 +43,45 @@ public class UserControl {
         }
     }
 
-    /**
-     * Update information of user
-     *
-     * @param id
-     * @param currentUser
-     */
-    public void updateInformation(String id, User currentUser) {
-        if (root != null) {
-            User aux = root;
-            while (aux.getNext() != root && aux.getDni() != id) {
-                aux = aux.getNext();
-            }
-            if (aux.getDni() == id) {
-                aux = currentUser;
-            }
-        }
-    }
 
     /**
      * Delete a user of users list.
      *
      * @param userAtDelete
      */
-    public void deleteUser(User userAtDelete) {
-
+    public void deleteUser(String id) {
+        if (root != null) {
+            if (root.getDni() == id) {
+                if (root.getNext() != null) {
+                    root.getNext().setPrevious(null);
+                    root = root.getNext();
+                }
+                root = null;
+                System.out.println("Eliminado al principio");
+                return;
+            } else {
+                User temp = root;
+                while (temp != null && temp.getDni() != id) {
+                    temp = temp.getNext();
+                }
+                if (temp != null) {
+                    if (temp.getNext() == null) {
+                        temp.getPrevious().setNext(null);
+                        temp.setPrevious(null);
+                        System.out.println("Eliminado al final");
+                        return;
+                    } else {
+                        temp.getPrevious().setNext(temp.getNext());
+                        temp.getNext().setPrevious(temp.getPrevious());
+                        temp.setPrevious(null);
+                        temp.setNext(null);
+                        temp = null;
+                        System.out.println("Eliminado en el medio");
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     /**

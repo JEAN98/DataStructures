@@ -56,7 +56,7 @@ public class ViewProphileController implements Initializable {
     
     @FXML
     private void deleteUser(ActionEvent event) {
-        userControl.deleteUser(userControl.getSession());
+        userControl.deleteUser(userControl.getSession().getDni());
         decision.showLogin();
     }
     

@@ -7,6 +7,10 @@ package decision.controllers;
 
 import decision.Decision;
 import decision.Sex;
+import decision.Tester;
+import decision.Tree;
+import decision.TreeNode;
+import decision.TreeNodeType;
 import decision.User;
 import decision.UserControl;
 import java.net.URL;
@@ -65,6 +69,11 @@ public class LoginController implements Initializable {
         this.userControl = this.decision.getUserControl();
 
         loginButtom.requestFocus();
+        
+        Tester test = new Tester();
+       
+              
+        
     }
 
     /**
@@ -78,11 +87,14 @@ public class LoginController implements Initializable {
     @FXML
     private void logIn(ActionEvent event) {
         
-        decision.showProphile();
+       
          if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
-
+             decision.showProphile();
             System.out.println("Login");
         }
+         else{
+             System.out.println("Incorrect");
+         }
     }
 
     @FXML
