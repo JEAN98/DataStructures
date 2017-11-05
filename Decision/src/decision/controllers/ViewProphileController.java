@@ -46,12 +46,19 @@ public class ViewProphileController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    private void ShowInformation(){
+        name.setText(this.userControl.getSession().getFullName());
+        id.setText(this.userControl.getSession().getDni());
+        age.setText(String.valueOf(this.userControl.getSession().getAge()));
+        sex.setText(String.valueOf(this.userControl.getSession().getSex()));
+    }
     
     public void start(Decision decision) {
         
         this.decision = decision;
         this.userControl = this.decision.getUserControl();
         prophile.setSelected(true);
+        ShowInformation();
     }
     
     @FXML

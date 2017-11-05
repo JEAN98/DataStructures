@@ -71,9 +71,7 @@ public class LoginController implements Initializable {
         loginButtom.requestFocus();
         
         Tester test = new Tester();
-       
-              
-        
+
     }
 
     /**
@@ -90,7 +88,7 @@ public class LoginController implements Initializable {
        
          if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
              decision.showProphile();
-            System.out.println("Login");
+             System.out.println("Login");
         }
          else{
              System.out.println("Incorrect");
