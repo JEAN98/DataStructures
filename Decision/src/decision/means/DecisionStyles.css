@@ -12,23 +12,27 @@ and open the template in the editor.
     -fx-font-size: 32pt;
     -fx-font-family: "Lobster";
 }
-.loginBackground {
+.background {
 
-    /*-fx-background-image: url("/decision/means/vector.jpg");
-    -fx-background-position: center center;*/
+    -fx-background-color: rgb(245, 245, 245); 
 }
 
 .header {
-    -fx-background-color: rgba(255,255,255,0.75); 
-    -fx-background-repeat: stretch; 
+    
+    -fx-background-color: rgb(25, 117, 209); 
 }
 
+.card {  
+
+    -fx-background-color: rgb(255, 255, 255);
+
+}
 
 .tree {
-    
+
     -fx-background-color: rgb(255, 255, 255);
     -fx-background-radius: 10px;
-    
+
     -fx-border-color: rgb(218, 218, 218);
     -fx-border-radius: 10px;
 }
