@@ -21,7 +21,7 @@ public class TreeNode {
     public TreeNode(int id, TreeNodeType treeNodeType) {
         this.id = id;
         this.treeNodeType = treeNodeType;
-        this.treeNodeList = null;
+        this.treeNodeList = new ArrayList<>();
     }    
     
     public ArrayList<TreeNode> getTreeNodeList() {
