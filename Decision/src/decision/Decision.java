@@ -6,14 +6,15 @@
 package decision;
 
 import decision.controllers.LoginController;
-import decision.controllers.TopBarController;
+import decision.controllers.ViewCatalogController;
+import decision.controllers.ViewProphileController;
+import decision.controllers.ViewTreeController;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -22,31 +23,33 @@ import javafx.stage.StageStyle;
 public class Decision extends Application {
 
     //UI
-    private BorderPane rootLogin;
-    private BorderPane rootView;
+    private BorderPane root;
     private Scene scene;
     private Stage myStage;
     private BorderPane login;
-    private BorderPane topBar;
+    private BorderPane viewProphile;
 
     //Controller
     private LoginController loginController;
-    private TopBarController topBarController;
+    private ViewProphileController viewProphileController;
 
     //System
     private UserControl userControl;
+    private BorderPane viewTree;
+    private ViewTreeController viewTreeController;
+    private BorderPane viewCatalog;
+    private ViewCatalogController viewCatalogController;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        rootLogin = new BorderPane();
-        rootView = new BorderPane();
+        root = new BorderPane();
 
         initSystem();
         initUI();
         showLogin();
 
-        scene = new Scene(rootLogin, 720, 480);
+        scene = new Scene(root, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
 
@@ -67,13 +70,26 @@ public class Decision extends Application {
         loginController = loader.getController();
         loginController.start(this);
 
-        //Build top bar
+        //Build prophile
         FXMLLoader loader2 = new FXMLLoader();
-        loader2.setLocation(Decision.class.getResource("/decision/means/TopBar.fxml"));
-        this.topBar = (BorderPane) loader2.load();
+        loader2.setLocation(Decision.class.getResource("/decision/means/ViewProphile.fxml"));
+        this.viewProphile = (BorderPane) loader2.load();
 
-        topBarController = loader2.getController();
-        topBarController.start(this);
+        viewProphileController = loader2.getController();
+
+        //Build Tree
+        FXMLLoader loader3 = new FXMLLoader();
+        loader3.setLocation(Decision.class.getResource("/decision/means/ViewTree.fxml"));
+        this.viewTree = (BorderPane) loader3.load();
+
+        viewTreeController = loader3.getController();
+        
+        //Build catalog
+        FXMLLoader loader4 = new FXMLLoader();
+        loader4.setLocation(Decision.class.getResource("/decision/means/ViewCatalog.fxml"));
+        this.viewCatalog = (BorderPane) loader4.load();
+
+        viewCatalogController = loader4.getController();
 
     }
 
@@ -83,14 +99,30 @@ public class Decision extends Application {
     }
 
     public void showLogin() {
-        rootLogin.setCenter(this.login);
+
+        root.setCenter(this.login);
+
     }
 
-    public void showView() {
-        
-        rootView.setTop(this.topBar);
-        scene.setRoot(rootView);
-        
+    public void showProphile() {
+
+        root.setCenter(viewProphile);
+        viewProphileController.start(this);
+
+    }
+
+    public void showTree() {
+
+        root.setCenter(viewTree);
+        viewTreeController.start(this);
+
+    }
+    
+     public void showCatalog() {
+
+        root.setCenter(viewCatalog);
+        viewCatalogController.start(this);
+
     }
 
     /**
@@ -132,14 +164,6 @@ public class Decision extends Application {
         this.login = login;
     }
 
-    public BorderPane getTopBar() {
-        return topBar;
-    }
-
-    public void setTopBar(BorderPane topBar) {
-        this.topBar = topBar;
-    }
-
     public LoginController getLoginController() {
         return loginController;
     }
@@ -148,28 +172,28 @@ public class Decision extends Application {
         this.loginController = loginController;
     }
 
-    public TopBarController getTopBarController() {
-        return topBarController;
+    public BorderPane getRoot() {
+        return root;
     }
 
-    public void setTopBarController(TopBarController topBarController) {
-        this.topBarController = topBarController;
+    public void setRoot(BorderPane root) {
+        this.root = root;
     }
 
-    public BorderPane getRootLogin() {
-        return rootLogin;
+    public BorderPane getViewProphile() {
+        return viewProphile;
     }
 
-    public void setRootLogin(BorderPane rootLogin) {
-        this.rootLogin = rootLogin;
+    public void setViewProphile(BorderPane viewProphile) {
+        this.viewProphile = viewProphile;
     }
 
-    public BorderPane getRootView() {
-        return rootView;
+    public ViewProphileController getViewProphileController() {
+        return viewProphileController;
     }
 
-    public void setRootView(BorderPane rootView) {
-        this.rootView = rootView;
+    public void setViewProphileController(ViewProphileController viewProphileController) {
+        this.viewProphileController = viewProphileController;
     }
 
 }

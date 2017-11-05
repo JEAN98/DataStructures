@@ -6,32 +6,26 @@
 package decision.controllers;
 
 import decision.Decision;
-import decision.UserControl;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
  *
  * @author kenma
  */
-public class TreeController implements Initializable {
+public class ViewCatalogController implements Initializable {
 
     @FXML
-    private Label question;
+    private ToggleGroup paned;
     @FXML
-    private Label description;
-
-    public void start(String question, String description) {
-        
-        this.question.setText(question);
-        this.description.setText(description);
-    }
+    private ToggleButton catalog;
+    private Decision decision;
 
     /**
      * Initializes the controller class.
@@ -41,18 +35,31 @@ public class TreeController implements Initializable {
         // TODO
     }
 
-    @FXML
-    private void run(ActionEvent event) {
+    public void start(Decision decision) {
+
+        this.decision = decision;
+        catalog.setSelected(true);
+
     }
 
     @FXML
-    private void delete(ActionEvent event) {
+    private void deleteUser(ActionEvent event) {
     }
 
     @FXML
-    private void edit(ActionEvent event) {
+    private void viewProphile(ActionEvent event) {
+        decision.showProphile();
+
     }
-    
-  
+
+    @FXML
+    private void viewTrees(ActionEvent event) {
+        decision.showTree();
+
+    }
+
+    @FXML
+    private void logOut(ActionEvent event) {
+    }
 
 }
