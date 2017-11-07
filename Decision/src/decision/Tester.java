@@ -24,7 +24,16 @@ public class Tester {
         listOfTree.addTree(tree2);
         newUser.addLListOfTree(listOfTree);
         
+        User newUser2 = new User("Jean Carlo", "2", (short) 0, Sex.Male, "2");
+        Tree tree21 = new Tree("can I ride the bus?", "Very if you can travel with bus", 0);
+        Tree tree22 = new Tree("can I food in my house?", "diagnosis.", 1);
+        ListOfTree list2 = new ListOfTree();
+        list2.addTree(tree21);
+        list2.addTree(tree22);
+        newUser2.addLListOfTree(list2);
+        
         userControl.addUser(newUser);
+        userControl.addUser(newUser2);
     }
     
 }
