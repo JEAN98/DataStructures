@@ -14,6 +14,8 @@ public class Tree {
     private String question;
     private String description;
     private int id;
+    private Tree next;
+    private Tree back;
 
     public Tree(String question, String description, int id) {
         this.question = question;
@@ -47,5 +49,21 @@ public class Tree {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Tree getNext() {
+        return next;
+    }
+
+    public void setNext(Tree next) {
+        this.next = next;
+    }
+
+    public Tree getBack() {
+        return back;
+    }
+
+    public void setBack(Tree back) {
+        this.back = back;
     }
 }

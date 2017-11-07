@@ -12,9 +12,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -47,28 +49,39 @@ public class ViewProphileController implements Initializable {
         // TODO
     }
     private void ShowInformation(){
-        name.setText(this.userControl.getSession().getFullName());
-        id.setText(this.userControl.getSession().getDni());
-        age.setText(String.valueOf(this.userControl.getSession().getAge()));
-        sex.setText(String.valueOf(this.userControl.getSession().getSex()));
+        name.setText("Name: " + this.userControl.getSession().getFullName());
+        id.setText("ID: " + this.userControl.getSession().getDni());
+        age.setText("Age: " + String.valueOf(this.userControl.getSession().getAge()));
+        sex.setText("Sex: " + String.valueOf(this.userControl.getSession().getSex()));
     }
     
     public void start(Decision decision) {
         
         this.decision = decision;
         this.userControl = this.decision.getUserControl();
+        
         prophile.setSelected(true);
+        
         ShowInformation();
     }
     
     @FXML
     private void deleteUser(ActionEvent event) {
+        
         userControl.deleteUser(userControl.getSession().getDni());
+        
+        Notifications.create()
+                    .title("Delete user")
+                    .text("User successfully deleted.")
+                    .position(Pos.TOP_RIGHT)
+                    .showConfirm();
+        
         decision.showLogin();
     }
     
     @FXML
     private void viewCatalog(ActionEvent event) {
+        
         decision.showCatalog();
     }
     
@@ -76,6 +89,13 @@ public class ViewProphileController implements Initializable {
     private void logOut(ActionEvent event) {
         
         userControl.closeSession();
+        
+        Notifications.create()
+                    .title("Close session")
+                    .text("close session correctly.")
+                    .position(Pos.TOP_RIGHT)
+                    .showConfirm();
+        
         decision.showLogin();
     }
     

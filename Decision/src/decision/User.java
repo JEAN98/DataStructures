@@ -18,7 +18,7 @@ public class User {
     private String password;
     private User next;
     private User previous;
-    private final ListOfTree listOfTree;
+    private ListOfTree listOfTree;
 
     /**
      *
@@ -43,13 +43,16 @@ public class User {
     /**
      * Add a list of decissions trees.
      */
-    public void addLListOfTree() {
+    public void addLListOfTree(ListOfTree listOfTree) {
+        this.listOfTree = listOfTree;
     }
 
     /**
      * Delete the list of decissions trees.
      */
     public void deleteListOfTree() {
+        
+        listOfTree = null;
     }
 
     public String getFullName() {
@@ -106,6 +109,14 @@ public class User {
 
     public void setPrevious(User previous) {
         this.previous = previous;
+    }
+
+    public ListOfTree getListOfTree() {
+        return listOfTree;
+    }
+
+    public void setListOfTree(ListOfTree listOfTree) {
+        this.listOfTree = listOfTree;
     }
     
     

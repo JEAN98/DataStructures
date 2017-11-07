@@ -7,10 +7,14 @@ and open the template in the editor.
     Created on : 31-oct-2017, 9:55:01
     Author     : kenma
 */
+@font-face {
+    src: url(Lobster-Regular.ttf");
+}
+
 .logo {
 
     -fx-font-size: 32pt;
-    -fx-font-family: "Lobster";
+    -fx-font-family: Lobster;
 }
 .background {
 
@@ -18,7 +22,7 @@ and open the template in the editor.
 }
 
 .header {
-    
+
     -fx-background-color: rgb(25, 117, 209); 
 }
 
@@ -29,10 +33,5 @@ and open the template in the editor.
 }
 
 .tree {
-
-    -fx-background-color: rgb(255, 255, 255);
-    -fx-background-radius: 10px;
-
-    -fx-border-color: rgb(218, 218, 218);
-    -fx-border-radius: 10px;
+    -fx-font: 1.3em Lobster;
 }

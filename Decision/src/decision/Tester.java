@@ -12,9 +12,19 @@ package decision;
 public class Tester {
     
     public Tester(){
-       Tree tree = new Tree("¿Puedo jugar?", "Arbol para jugar bola", 0);
-       Root raiz = new Root("¿Cómo esta el clima?", 00, TreeNodeType.Root);
-       
+    }
+    
+    public void test(UserControl userControl){
+    
+        User newUser = new User("Kenet Mauricio Acuña Lago", "1", (short) 0, Sex.Male, "1");
+        ListOfTree listOfTree = new ListOfTree();
+        Tree tree1 = new Tree("I can play football?", "It helps to decide between going out to play football or not.", 0);
+        Tree tree2 = new Tree("I have cancer?", "Dictate a predictive diagnosis.", 1);
+        listOfTree.addTree(tree1);
+        listOfTree.addTree(tree2);
+        newUser.addLListOfTree(listOfTree);
+        
+        userControl.addUser(newUser);
     }
     
 }

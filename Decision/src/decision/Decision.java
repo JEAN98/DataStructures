@@ -39,6 +39,9 @@ public class Decision extends Application {
     private ViewTreeController viewTreeController;
     private BorderPane viewCatalog;
     private ViewCatalogController viewCatalogController;
+    
+    //Test
+    private Tester tester = new Tester();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -52,6 +55,9 @@ public class Decision extends Application {
         scene = new Scene(root, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
+        
+        //Test
+        tester.test(userControl);
 
         myStage = primaryStage;
         myStage.setResizable(false);

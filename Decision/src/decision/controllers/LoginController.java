@@ -8,9 +8,6 @@ package decision.controllers;
 import decision.Decision;
 import decision.Sex;
 import decision.Tester;
-import decision.Tree;
-import decision.TreeNode;
-import decision.TreeNodeType;
 import decision.User;
 import decision.UserControl;
 import java.net.URL;
@@ -59,18 +56,14 @@ public class LoginController implements Initializable {
     private TextField singupConfirmPassword;
     @FXML
     private Button singupButtom;
-    
+
     private Decision decision;
     private UserControl userControl;
-    
+
     public void start(Decision decision) {
 
         this.decision = decision;
         this.userControl = this.decision.getUserControl();
-
-        loginButtom.requestFocus();
-        
-        Tester test = new Tester();
 
     }
 
@@ -80,19 +73,20 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void logIn(ActionEvent event) {
-        
-       
-         if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
-             decision.showProphile();
-             System.out.println("Login");
+
+        if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
+            decision.showProphile();
+        } else {
+            Notifications.create()
+                    .title("Login")
+                    .text("Incorrect ID or password.")
+                    .position(Pos.TOP_RIGHT)
+                    .showError();
         }
-         else{
-             System.out.println("Incorrect");
-         }
     }
 
     @FXML
@@ -118,7 +112,7 @@ public class LoginController implements Initializable {
             );
 
             userControl.addUser(newUser);
-            
+
             Notifications.create()
                     .title("Sing Up")
                     .text("Successful registration.")
