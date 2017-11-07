@@ -45,7 +45,6 @@ public class ViewTreeController implements Initializable {
     private TextArea description;
     @FXML
     private ListView<Tree> treeList;
-
     @FXML
     private HBox actionsTreeSelected;
 
@@ -153,9 +152,6 @@ public class ViewTreeController implements Initializable {
     private void view(ActionEvent event) {
     }
 
-    @FXML
-    private void edit(ActionEvent event) {
-    }
 
     @FXML
     private void delete(ActionEvent event) {
@@ -165,5 +161,10 @@ public class ViewTreeController implements Initializable {
         refreshTreesItems();
         actionsTreeSelected.setDisable(true);
     }
+
+    @FXML
+    private void edit(ActionEvent event) {
+    }
+
 
 }
