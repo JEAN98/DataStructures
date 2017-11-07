@@ -85,7 +85,7 @@ public class ViewTreeController implements Initializable {
     }
     
     private void refreshTreesItems() {
-        
+        //if(){}
         treesItems = listOfTree.getAllTrees();
         treeList.setItems(treesItems);
         costomCell();

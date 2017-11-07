@@ -37,6 +37,7 @@ public class User {
         this.listOfTree = null;
         this.previous = null;
         this.next = null;
+        this.listOfTree =  new ListOfTree();
                 
     }
 
@@ -44,6 +45,7 @@ public class User {
      * Add a list of decissions trees.
      */
     public void addLListOfTree(ListOfTree listOfTree) {
+        
         this.listOfTree = listOfTree;
     }
 
