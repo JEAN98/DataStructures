@@ -12,7 +12,6 @@
 
 # Package Files #
 *.jar
-!controlsfx-8.40.14.jar
 *.war
 *.ear
 *.zip
