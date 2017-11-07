@@ -6,7 +6,6 @@
 package decision.controllers;
 
 import decision.Decision;
-import decision.ListOfTree;
 import decision.Tree;
 import decision.User;
 import decision.UserControl;

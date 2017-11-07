@@ -107,7 +107,7 @@ public class ViewTreeController implements Initializable {
                         super.updateItem(item, empty);
                         if (item != null) {
 
-                            Label question = new Label(item.getId() + "# " + item.getQuestion());
+                            Label question = new Label(item.getQuestion());
                             question.getStyleClass().add("tree");
                             Label descriotion = new Label(item.getDescription());
 
