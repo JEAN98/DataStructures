@@ -28,17 +28,18 @@ public class Decision extends Application {
     private Stage myStage;
     private BorderPane login;
     private BorderPane viewProphile;
+    private BorderPane viewCatalog;
+    private BorderPane viewTree;
 
     //Controller
     private LoginController loginController;
     private ViewProphileController viewProphileController;
+    private ViewCatalogController viewCatalogController;
+    private ViewTreeController viewTreeController;
 
     //System
     private UserControl userControl;
-    private BorderPane viewTree;
-    private ViewTreeController viewTreeController;
-    private BorderPane viewCatalog;
-    private ViewCatalogController viewCatalogController;
+    private GeneratorID generatorID;
     
     //Test
     private Tester tester = new Tester();
@@ -57,7 +58,7 @@ public class Decision extends Application {
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
         
         //Test
-        tester.test(userControl);
+        tester.test(userControl, generatorID);
 
         myStage = primaryStage;
         myStage.setResizable(false);
@@ -102,6 +103,7 @@ public class Decision extends Application {
     private void initSystem() {
 
         userControl = new UserControl();
+        generatorID = new GeneratorID();
     }
 
     public void showLogin() {
@@ -200,6 +202,14 @@ public class Decision extends Application {
 
     public void setViewProphileController(ViewProphileController viewProphileController) {
         this.viewProphileController = viewProphileController;
+    }
+
+    public GeneratorID getGeneratorID() {
+        return generatorID;
+    }
+
+    public void setGeneratorID(GeneratorID generatorID) {
+        this.generatorID = generatorID;
     }
 
 }

@@ -6,6 +6,7 @@
 package decision.controllers;
 
 import decision.Decision;
+import decision.GeneratorID;
 import decision.ListOfTree;
 import decision.Tree;
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class ViewTreeController implements Initializable {
     private ListOfTree listOfTree;
     private Tree treeSelect;
     private ObservableList<Tree> treesItems;
+    private GeneratorID generatorID;
 
     /**
      * Initializes the controller class.
@@ -77,6 +79,7 @@ public class ViewTreeController implements Initializable {
 
         this.decision = decision;
         listOfTree = this.decision.getUserControl().getSession().getListOfTree();
+        generatorID = this.decision.getGeneratorID();
         
         refreshTreesItems();
         
@@ -104,7 +107,7 @@ public class ViewTreeController implements Initializable {
                         super.updateItem(item, empty);
                         if (item != null) {
 
-                            Label question = new Label(item.getQuestion());
+                            Label question = new Label(item.getId() + "# " + item.getQuestion());
                             question.getStyleClass().add("tree");
                             Label descriotion = new Label(item.getDescription());
 
@@ -138,7 +141,7 @@ public class ViewTreeController implements Initializable {
     @FXML
     private void addTree(ActionEvent event) throws IOException {
 
-        Tree newTree = new Tree(question.getText(), description.getText(), 0);
+        Tree newTree = new Tree(question.getText(), description.getText(), generatorID.getIdTree());
 
         listOfTree.addTree(newTree);
         

@@ -10,16 +10,16 @@ package decision;
  * @author JeanCarlo
  */
 public class Tester {
-    
+        
     public Tester(){
     }
     
-    public void test(UserControl userControl){
+    public void test(UserControl userControl, GeneratorID generatorID){
     
         User newUser = new User("Kenet Mauricio Acuña Lago", "1", (short) 0, Sex.Male, "1");
         ListOfTree listOfTree = new ListOfTree();
-        Tree tree1 = new Tree("I can play football?", "It helps to decide between going out to play football or not.", 0);
-        Tree tree2 = new Tree("I have cancer?", "Dictate a predictive diagnosis.", 1);
+        Tree tree1 = new Tree("I can play football?", "It helps to decide between going out to play football or not.", generatorID.getIdTree());
+        Tree tree2 = new Tree("I have cancer?", "Dictate a predictive diagnosis.", generatorID.getIdTree());
         listOfTree.addTree(tree1);
         listOfTree.addTree(tree2);
         newUser.addLListOfTree(listOfTree);

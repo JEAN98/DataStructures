@@ -35,3 +35,18 @@ and open the template in the editor.
 .tree {
     -fx-font: 1.3em Lobster;
 }
+
+.root {
+    -fx-background-color: rgb(77, 128, 191); 
+    -fx-background-radius: 10px;
+}
+
+.dessicion {
+    -fx-background-color: rgb(177, 204, 255); 
+    -fx-background-radius: 10px;
+}
+
+.leaft {
+    -fx-background-color: rgb(255, 202, 150); 
+    -fx-background-radius: 10px;
+}
