@@ -19,7 +19,7 @@
                </padding>
                <children>
                   <TextField fx:id="loginDNI" promptText="DNI" />
-                  <TextField fx:id="loginPassword" promptText="Password" />
+                  <PasswordField fx:id="loginPassword" promptText="Password" />
                   <Button fx:id="loginButtom" mnemonicParsing="false" onAction="#logIn" styleClass="success" text="Login" />
                </children>
             </HBox>
@@ -30,17 +30,18 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
                <children>
-                  <Label styleClass="logo" text="Decision">
+                  <Label text="Decision">
                      <font>
                         <Font name="Lobster" size="32.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="logo" />
+                        <String fx:value="headerText" />
+                     </styleClass>
                   </Label>
                </children>
             </VBox>
          </left>
-         <effect>
-            <DropShadow />
-         </effect>
       </BorderPane>
    </top>
    <right>
@@ -64,8 +65,8 @@
                         <RadioButton fx:id="singupFemale" mnemonicParsing="false" text="Female" toggleGroup="$sex" />
                      </children>
                   </HBox>
-                  <TextField fx:id="singupPassword" promptText="Password" />
-                  <TextField fx:id="singupConfirmPassword" promptText="Confirm Password" />
+                  <PasswordField fx:id="singupPassword" promptText="Password" />
+                  <PasswordField fx:id="singupConfirmPassword" promptText="Confirm Password" />
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Button fx:id="singupButtom" mnemonicParsing="false" onAction="#SingUp" styleClass="info" text="SingUp" />
@@ -75,9 +76,6 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-               <effect>
-                  <DropShadow />
-               </effect>
             </VBox>
          </children>
          <padding>

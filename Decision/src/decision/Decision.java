@@ -5,6 +5,7 @@
  */
 package decision;
 
+import decision.controllers.EditTreeController;
 import decision.controllers.LoginController;
 import decision.controllers.ViewCatalogController;
 import decision.controllers.ViewProphileController;
@@ -30,12 +31,14 @@ public class Decision extends Application {
     private BorderPane viewProphile;
     private BorderPane viewCatalog;
     private BorderPane viewTree;
+    private BorderPane editTree;
 
     //Controller
     private LoginController loginController;
     private ViewProphileController viewProphileController;
     private ViewCatalogController viewCatalogController;
     private ViewTreeController viewTreeController;
+    private EditTreeController editTreeController;
 
     //System
     private UserControl userControl;
@@ -61,7 +64,8 @@ public class Decision extends Application {
         tester.test(userControl, generatorID);
 
         myStage = primaryStage;
-        myStage.setResizable(false);
+        myStage.setMaximized(true);
+//        myStage.setResizable(false);
         myStage.setScene(scene);
         myStage.show();
 
@@ -97,6 +101,13 @@ public class Decision extends Application {
         this.viewCatalog = (BorderPane) loader4.load();
 
         viewCatalogController = loader4.getController();
+        
+        //Build catalog
+        FXMLLoader loader5 = new FXMLLoader();
+        loader5.setLocation(Decision.class.getResource("/decision/means/EditTree.fxml"));
+        this.editTree = (BorderPane) loader5.load();
+
+        editTreeController = loader5.getController();
 
     }
 
@@ -130,6 +141,13 @@ public class Decision extends Application {
 
         root.setCenter(viewCatalog);
         viewCatalogController.start(this);
+
+    }
+     
+     public void showEditTree(Tree tree) {
+
+        root.setCenter(editTree);
+        editTreeController.start(tree, this);
 
     }
 

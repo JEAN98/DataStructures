@@ -151,9 +151,6 @@ public class ViewTreeController implements Initializable {
         description.clear();
     }
 
-    @FXML
-    private void view(ActionEvent event) {
-    }
 
 
     @FXML
@@ -166,8 +163,16 @@ public class ViewTreeController implements Initializable {
     }
 
     @FXML
-    private void edit(ActionEvent event) {
+    private void view(ActionEvent event) {
     }
+
+    @FXML
+    private void edit(ActionEvent event) {
+        
+        decision.showEditTree(treeSelect);
+    }
+
+
 
 
 }

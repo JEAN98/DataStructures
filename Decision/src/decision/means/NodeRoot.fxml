@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Node Root">
+               <styleClass>
+                  <String fx:value="headerText" />
+                  <String fx:value="tree" />
+               </styleClass>
+            </Label>
+         </children>
+      </HBox>
+      <TextField fx:id="question" promptText="Root question." />
+      <HBox alignment="CENTER_RIGHT">
+         <children>
+            <Button mnemonicParsing="false" onAction="#add" styleClass="success" text="Add" />
+         </children>
+      </HBox>
+   </children>
+   <styleClass>
+      <String fx:value="root" />
+      <String fx:value="node" />
+   </styleClass>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
