@@ -21,6 +21,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javax.management.openmbean.SimpleType;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -79,6 +80,7 @@ public class LoginController implements Initializable {
     private void logIn(ActionEvent event) {
         if (verifyInformation()) {
             if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
+                cleanInputs();
                 decision.showProphile();
             } else {
                 Notifications.create()
@@ -105,42 +107,78 @@ public class LoginController implements Initializable {
 
     @FXML
     private void SingUp(ActionEvent event) {
-        if (singupPassword.getText().equals(singupConfirmPassword.getText())) {
+        try {
+            int x = Integer.valueOf(singupAge.getText());
+            if (verifyInpustSingUp()) {
+                if (singupPassword.getText().equals(singupConfirmPassword.getText())) {
 
-            Sex sexUser = null;
+                    Sex sexUser = null;
 
-            if (singupMale == this.sex.getSelectedToggle()) {
+                    if (singupMale == this.sex.getSelectedToggle()) {
 
-                sexUser = Sex.Male;
+                        sexUser = Sex.Male;
+                    } else {
+
+                        sexUser = Sex.Female;
+                    }
+
+                    User newUser = new User(
+                            singupFullName.getText(),
+                            singupDNI.getText(),
+                            Short.parseShort(singupAge.getText()),
+                            sexUser,
+                            singupPassword.getText()
+                    );
+
+                    userControl.addUser(newUser);
+
+                    Notifications.create()
+                            .title("Sing Up")
+                            .text("Successful registration.")
+                            .position(Pos.TOP_RIGHT)
+                            .showConfirm();
+                    cleanInputs();
+                } else {
+
+                    Notifications.create()
+                            .title("Sing Up")
+                            .text("Passwords do not match.")
+                            .position(Pos.TOP_RIGHT)
+                            .showError();
+                }
             } else {
-
-                sexUser = Sex.Female;
+                Notifications.create()
+                        .title("SingUp")
+                        .text("You must fill all inputs!")
+                        .position(Pos.TOP_RIGHT)
+                        .showError();
             }
-
-            User newUser = new User(
-                    singupFullName.getText(),
-                    singupDNI.getText(),
-                    Short.parseShort(singupAge.getText()),
-                    sexUser,
-                    singupPassword.getText()
-            );
-
-            userControl.addUser(newUser);
-
+        } catch (Exception ex) {
             Notifications.create()
-                    .title("Sing Up")
-                    .text("Successful registration.")
-                    .position(Pos.TOP_RIGHT)
-                    .showConfirm();
-        } else {
-
-            Notifications.create()
-                    .title("Sing Up")
-                    .text("Passwords do not match.")
+                    .title("SingUp")
+                    .text("You must write only numbers in the age input!")
                     .position(Pos.TOP_RIGHT)
                     .showError();
         }
+
     }
+    private Boolean verifyInpustSingUp(){
+        if (singupFullName.getText().equals("") || singupDNI.getText().equals("") || singupAge.getText().equals("") || singupPassword.getText().equals("")) {
+            return false;
+        }
+        return true;
+    }
+    
+    private void cleanInputs(){
+        singupAge.setText("");
+        singupDNI.setText("");
+        singupAge.setText("");
+        singupPassword.setText("");
+        singupFullName.setText("");
+        loginDNI.setText("");
+        loginPassword.setText("");
+    }
+            
     
        
 }
