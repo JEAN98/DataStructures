@@ -77,16 +77,30 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logIn(ActionEvent event) {
-
-        if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
-            decision.showProphile();
-        } else {
-            Notifications.create()
-                    .title("Login")
-                    .text("Incorrect ID or password.")
-                    .position(Pos.TOP_RIGHT)
-                    .showError();
+        if (verifyInformation()) {
+            if (userControl.login(loginDNI.getText(), loginPassword.getText())) {
+                decision.showProphile();
+            } else {
+                Notifications.create()
+                        .title("Login")
+                        .text("Incorrect ID or password.")
+                        .position(Pos.TOP_RIGHT)
+                        .showError();
+            }
         }
+        else{
+             Notifications.create()
+                        .title("Login")
+                        .text("You must fill all inputs!")
+                        .position(Pos.TOP_RIGHT)
+                        .showError();
+        }
+    }
+    private boolean verifyInformation(){
+        if(loginDNI.getText().equals("")|| loginPassword.getText().equals("")){
+            return false;
+        }
+        return true;
     }
 
     @FXML
@@ -127,4 +141,6 @@ public class LoginController implements Initializable {
                     .showError();
         }
     }
+    
+       
 }
