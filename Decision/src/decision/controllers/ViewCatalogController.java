@@ -143,6 +143,8 @@ public class ViewCatalogController implements Initializable {
 
     @FXML
     private void view(ActionEvent event) {
+        
+        decision.showTreeViewCenter(treeSelect, false);
     }
 
     @FXML

@@ -164,6 +164,8 @@ public class ViewTreeController implements Initializable {
 
     @FXML
     private void view(ActionEvent event) {
+        
+        decision.showTreeViewCenter(treeSelect, true);
     }
 
     @FXML

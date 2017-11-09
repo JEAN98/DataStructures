@@ -22,6 +22,7 @@ public class TreeNode {
         this.id = id;
         this.treeNodeType = treeNodeType;
         this.childCount = 0;
+        this.childs = new TreeNode[0];
     }
 
     /**

@@ -6,6 +6,7 @@
 package decision;
 
 import java.util.ArrayList;
+import javafx.scene.control.TreeItem;
 
 /**
  *
@@ -27,8 +28,81 @@ public class Tree {
     }
 
     public void addRootNode(TreeNode treeNode) {
-        
+
         root = treeNode;
+    }
+
+    public int numberOfCombinations() {
+
+        int numberOfCombinations = 0;
+
+        if (root != null) {
+
+            numberOfCombinations += numberOfCombinations(root);
+        }
+
+        return numberOfCombinations;
+    }
+
+    private int numberOfCombinations(TreeNode root) {
+
+        int numberOfCombinations = 0;
+
+        if ((root.getChildCount() > 0) || (root.getTreeNodeType() != TreeNodeType.Leaf)) {
+            for (TreeNode child : root.getChilds()) {
+
+                numberOfCombinations += numberOfCombinations(child);
+            }
+        } else {
+
+            numberOfCombinations++;
+        }
+
+        return numberOfCombinations;
+    }
+
+    public int averageOfsteps() {
+
+        int averageOfsteps = 0;
+        int Combinations = numberOfCombinations();
+        int[] steps;
+
+        if (root != null) {
+
+            if (Combinations > 0) {
+
+                steps = new int[root.getChildCount()];
+
+                int i = 0;
+                for (TreeNode child : root.getChilds()) {
+
+                    steps[i] += steps(child);
+                    
+                    i++;
+                }
+                
+//                averageOfsteps = 
+            }
+        }
+
+        return averageOfsteps;
+    }
+    
+    private int steps(TreeNode root) {
+
+        int steps = 0;
+
+        if (root.getChildCount() > 0) {
+            for (TreeNode child : root.getChilds()) {
+
+                steps += 1 + steps(child);
+            }
+        } else {
+        
+            steps++;
+        }
+
+        return steps;
     }
 
     public String getQuestion() {

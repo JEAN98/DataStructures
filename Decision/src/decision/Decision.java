@@ -7,6 +7,7 @@ package decision;
 
 import decision.controllers.EditTreeController;
 import decision.controllers.LoginController;
+import decision.controllers.TreeViewCenterController;
 import decision.controllers.ViewCatalogController;
 import decision.controllers.ViewProphileController;
 import decision.controllers.ViewTreeController;
@@ -32,6 +33,7 @@ public class Decision extends Application {
     private BorderPane viewCatalog;
     private BorderPane viewTree;
     private BorderPane editTree;
+    private BorderPane treeViewCenter;
 
     //Controller
     private LoginController loginController;
@@ -39,6 +41,7 @@ public class Decision extends Application {
     private ViewCatalogController viewCatalogController;
     private ViewTreeController viewTreeController;
     private EditTreeController editTreeController;
+    private TreeViewCenterController treeViewCenterController;
 
     //System
     private UserControl userControl;
@@ -109,6 +112,12 @@ public class Decision extends Application {
 
         editTreeController = loader5.getController();
 
+        //Build catalog
+        FXMLLoader loader6 = new FXMLLoader();
+        loader6.setLocation(Decision.class.getResource("/decision/means/TreeViewCenter.fxml"));
+        this.treeViewCenter = (BorderPane) loader6.load();
+
+        treeViewCenterController = loader6.getController();
     }
 
     private void initSystem() {
@@ -148,6 +157,13 @@ public class Decision extends Application {
 
         root.setCenter(editTree);
         editTreeController.start(tree, this);
+
+    }
+     
+     public void showTreeViewCenter(Tree tree, boolean isShowtree) {
+
+        root.setCenter(treeViewCenter);
+        treeViewCenterController.start(tree, isShowtree, this);
 
     }
 

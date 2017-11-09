@@ -11,27 +11,19 @@ import decision.Leaf;
 import decision.Root;
 import decision.Tree;
 import decision.TreeNode;
-import decision.TreeNodeType;
-import static decision.TreeNodeType.Desission;
-import static decision.TreeNodeType.Root;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+import static javafx.scene.layout.Region.USE_PREF_SIZE;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
@@ -40,38 +32,23 @@ import javafx.util.Callback;
  *
  * @author kenet
  */
-public class EditTreeController implements Initializable {
+public class TreeViewCenterController implements Initializable {
 
-    @FXML
-    private TreeView<TreeNode> treeView;
     @FXML
     private Label question;
     @FXML
     private Label description;
     @FXML
-    private TitledPane rootPane;
+    private ToggleGroup View;
     @FXML
-    private TextArea questionRoot;
+    private Label numberOfCombination;
     @FXML
-    private TitledPane decisionPane;
+    private Label averageOfSteps;
     @FXML
-    private TextArea answerDecision;
-    @FXML
-    private TextArea questionDecision;
-    @FXML
-    private TitledPane leaftPane;
-    @FXML
-    private TextArea answerLeaft;
-    @FXML
-    private TextArea answerTree;
-
+    private TreeView<TreeNode> treeView;
     private Decision decision;
-    private VBox nodeRoot;
-    private Tree treeControl;
-    private TreeItem<TreeNode> rootNode;
-    private TreeItem<TreeNode> selectNode;
-    private TreeNode rootNodeTree;
-    private boolean haveRoot = false;
+    private Tree tree;
+    private boolean isShowtree;
 
     /**
      * Initializes the controller class.
@@ -79,48 +56,59 @@ public class EditTreeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue o, Object oldVal, Object newVal) {
-
-                selectNode = (TreeItem<TreeNode>) newVal;
-            }
-        });
     }
 
-    public void start(Tree tree, Decision decision) {
+    @FXML
+    private void back(ActionEvent event) {
 
-        this.treeControl = tree;
-        this.decision = decision;
+        if (isShowtree) {
 
-        question.setText(treeControl.getQuestion());
-        description.setText(treeControl.getDescription());
-
-        refreshTreesItems();
-    }
-
-    private void refreshTreesItems() {
-
-        treeView.setRoot(null);
-        haveRoot = false;
-
-        rootNodeTree = treeControl.getRoot();
-        if (rootNodeTree != null) {
-
-            this.rootNode = new TreeItem<>(rootNodeTree);
-            load(rootNodeTree, rootNode);
-            treeView.setRoot(rootNode);
-            haveRoot = true;
+            decision.showTree();
         } else {
 
-            this.rootNode = new TreeItem<>();
+            decision.showCatalog();
+        }
+    }
+
+    @FXML
+    private void showAllCombinations(ActionEvent event) {
+
+        treeView.setRoot(null);
+
+        TreeNode rootNodeTree = tree.getRoot();
+
+        if (rootNodeTree != null) {
+
+            TreeItem<TreeNode> rootNode = new TreeItem<>(rootNodeTree);
+            load(rootNodeTree, rootNode);
+
+            treeView.setRoot(rootNode);
+            rootNode.setExpanded(true);
         }
 
-        rootNode.setExpanded(true);
-        costomCell();
+    }
 
-        uiControl();
+    @FXML
+    private void showShorter(ActionEvent event) {
+    }
+
+    @FXML
+    private void showLongest(ActionEvent event) {
+    }
+
+    public void start(Tree tree, boolean isShowtree, Decision aThis) {
+
+        this.decision = aThis;
+        this.tree = tree;
+        this.isShowtree = isShowtree;
+
+        question.setText(this.tree.getQuestion());
+        description.setText(this.tree.getDescription());
+
+        showAllCombinations(new ActionEvent());
+        costomCell();
+        
+        numberOfCombination.setText(String.valueOf(this.tree.numberOfCombinations()));
     }
 
     private void load(TreeNode root, TreeItem<TreeNode> rootItem) {
@@ -229,104 +217,5 @@ public class EditTreeController implements Initializable {
             }
 
         });
-    }
-
-    private void uiControl() {
-
-        if (haveRoot) {
-
-            rootPane.setExpanded(false);
-            rootPane.setDisable(true);
-
-            decisionPane.setExpanded(true);
-            decisionPane.setDisable(false);
-
-            leaftPane.setExpanded(true);
-            leaftPane.setDisable(false);
-        } else {
-
-            rootPane.setExpanded(true);
-            rootPane.setDisable(false);
-
-            decisionPane.setExpanded(false);
-            decisionPane.setDisable(true);
-
-            leaftPane.setExpanded(false);
-            leaftPane.setDisable(true);
-        }
-    }
-
-    @FXML
-    private void back(ActionEvent event) {
-
-        decision.showTree();
-    }
-
-    @FXML
-    private void save(ActionEvent event) {
-
-        if (treeView.getRoot() != null) {
-            TreeNode newNode;
-            TreeItem<TreeNode> rootItem = treeView.getRoot();
-            newNode = rootItem.getValue();
-
-            save(newNode, rootItem);
-
-            treeControl.addRootNode(newNode);
-        }
-    }
-
-    private void save(TreeNode rootNode, TreeItem<TreeNode> rootItem) {
-
-        rootNode.setChildCount(rootItem.getChildren().size());
-
-        for (TreeItem<TreeNode> child : rootItem.getChildren()) {
-
-            if (!child.getChildren().isEmpty()) {
-                save(child.getValue(), child);
-            }
-
-            rootNode.addNode(child.getValue());
-        }
-    }
-
-    @FXML
-    private void addRoot(ActionEvent event
-    ) {
-
-        Root root = new Root(questionRoot.getText(), 0, Root);
-        rootNodeTree = root;
-        this.rootNode = new TreeItem<>(rootNodeTree);
-
-        treeView.setRoot(rootNode);
-        haveRoot = true;
-        uiControl();
-    }
-
-    @FXML
-    private void addDecision(ActionEvent event
-    ) {
-
-        if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {
-
-            Desission decision = new Desission(questionDecision.getText(), answerDecision.getText(), 0, Desission);
-
-            selectNode.getChildren().add(new TreeItem<>(decision));
-            selectNode.setExpanded(true);
-        }
-
-    }
-
-    @FXML
-    private void addLeaft(ActionEvent event
-    ) {
-
-        if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {
-
-            Leaf leaf = new Leaf(answerLeaft.getText(), answerTree.getText(), 0, TreeNodeType.Leaf);
-
-            selectNode.getChildren().add(new TreeItem<>(leaf));
-            selectNode.setExpanded(true);
-        }
     }
 }
