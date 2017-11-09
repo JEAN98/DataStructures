@@ -12,12 +12,12 @@ package decision;
 public class Desission extends TreeNode {
 
     private String question;
-    private String answerTree;
+    private String answer;
 
-    public Desission(String question, String answerTree, int id, TreeNodeType treeNodeType) {
+    public Desission(String question, String answer, int id, TreeNodeType treeNodeType) {
         super(id, treeNodeType);
         this.question = question;
-        this.answerTree = answerTree;
+        this.answer = answer;
     }
 
     public String getQuestion() {
@@ -28,11 +28,11 @@ public class Desission extends TreeNode {
         this.question = question;
     }
 
-    public String getAnswerTree() {
-        return answerTree;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setAnswerTree(String answerTree) {
-        this.answerTree = answerTree;
+    public void setAnswerTree(String answer) {
+        this.answer = answer;
     }
 }

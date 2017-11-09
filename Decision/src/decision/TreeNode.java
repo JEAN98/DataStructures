@@ -15,28 +15,35 @@ public class TreeNode {
 
     private int id;
     private TreeNodeType treeNodeType;
-    private ArrayList<TreeNode> treeNodeList;
+    private TreeNode[] childs;
+    private int childCount;
 
-    
     public TreeNode(int id, TreeNodeType treeNodeType) {
         this.id = id;
         this.treeNodeType = treeNodeType;
-        this.treeNodeList = new ArrayList<>();
-    }    
-    
-    public ArrayList<TreeNode> getTreeNodeList() {
-        return treeNodeList;
+        this.childCount = 0;
     }
 
-    public void setTreeNodeList(ArrayList<TreeNode> treeNodeList) {
-        this.treeNodeList = treeNodeList;
-    }
-    /***
+    /**
+     * *
      * Add new Nodo in the tree node list
-     * @param newTreeNode 
+     *
+     * @param child
      */
-    public void addTreeNodeInList(TreeNode newTreeNode){
-        this.treeNodeList.add(newTreeNode);
+    public void addNode(TreeNode child) {
+
+        if (child != null) {
+
+            int i = 0;
+
+            while (childs[i] != null || childs.length < i) {
+
+                i++;
+            }
+
+            childs[i] = child;
+
+        }
     }
 
     public TreeNodeType getTreeNodeType() {
@@ -54,10 +61,26 @@ public class TreeNode {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void getShorRoutebyLeafYes(){
-        
+
+    public void getShorRoutebyLeafYes() {
+
     }
- 
-    
+
+    public TreeNode[] getChilds() {
+        return childs;
+    }
+
+    public void setChilds(TreeNode[] childs) {
+        this.childs = childs;
+    }
+
+    public int getChildCount() {
+        return childCount;
+    }
+
+    public void setChildCount(int childCount) {
+        this.childCount = childCount;
+        this.childs = new TreeNode[this.childCount];
+    }
+
 }

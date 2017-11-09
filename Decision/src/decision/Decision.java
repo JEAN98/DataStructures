@@ -64,7 +64,7 @@ public class Decision extends Application {
         tester.test(userControl, generatorID);
 
         myStage = primaryStage;
-        myStage.setMaximized(true);
+//        myStage.setMaximized(true);
 //        myStage.setResizable(false);
         myStage.setScene(scene);
         myStage.show();

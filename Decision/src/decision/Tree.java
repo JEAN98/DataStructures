@@ -5,6 +5,8 @@
  */
 package decision;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kenma
@@ -16,6 +18,7 @@ public class Tree {
     private int id;
     private Tree next;
     private Tree back;
+    private TreeNode root;
 
     public Tree(String question, String description, int id) {
         this.question = question;
@@ -23,8 +26,9 @@ public class Tree {
         this.id = id;
     }
 
-    public void addNode(TreeNode treeNode) {
-
+    public void addRootNode(TreeNode treeNode) {
+        
+        root = treeNode;
     }
 
     public String getQuestion() {
@@ -65,5 +69,13 @@ public class Tree {
 
     public void setBack(Tree back) {
         this.back = back;
+    }
+
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
     }
 }
