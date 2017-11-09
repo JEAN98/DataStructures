@@ -16,6 +16,7 @@ import static decision.TreeNodeType.Desission;
 import static decision.TreeNodeType.Root;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
@@ -34,6 +36,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -66,12 +69,12 @@ public class EditTreeController implements Initializable {
     private TextArea answerTree;
 
     private Decision decision;
-    private VBox nodeRoot;
     private Tree treeControl;
     private TreeItem<TreeNode> rootNode;
     private TreeItem<TreeNode> selectNode;
     private TreeNode rootNodeTree;
     private boolean haveRoot = false;
+    private ArrayList<Boolean> listVerify;
 
     /**
      * Initializes the controller class.
@@ -266,13 +269,25 @@ public class EditTreeController implements Initializable {
     private void save(ActionEvent event) {
 
         if (treeView.getRoot() != null) {
+
             TreeNode newNode;
             TreeItem<TreeNode> rootItem = treeView.getRoot();
             newNode = rootItem.getValue();
 
-            save(newNode, rootItem);
+            if (verify(rootItem)) {
 
-            treeControl.addRootNode(newNode);
+                save(newNode, rootItem);
+                treeControl.addRootNode(newNode);
+            } else {
+
+                Notifications.create()
+                        .title("Save")
+                        .text("All branches must end in leaves.")
+                        .position(Pos.TOP_RIGHT)
+                        .showError();
+
+            }
+
         }
     }
 
@@ -288,6 +303,46 @@ public class EditTreeController implements Initializable {
 
             rootNode.addNode(child.getValue());
         }
+    }
+
+    private void verifyAux(TreeItem<TreeNode> rootItem) {
+
+        if (rootItem.getChildren().size() > 0) {
+
+            for (TreeItem<TreeNode> child : rootItem.getChildren()) {
+
+                verify(child);
+
+            }
+        } else {
+            if (rootItem.getValue().getTreeNodeType() != TreeNodeType.Leaf) {
+
+                listVerify.add(false);
+            } else {
+
+                listVerify.add(true);
+            }
+        }
+
+    }
+
+    private boolean verify(TreeItem<TreeNode> rootItem) {
+
+        listVerify = new ArrayList<>();
+
+        verifyAux(rootItem);
+
+        boolean finalLeaf = true;
+
+        for (boolean hasLeaft : listVerify) {
+
+            if (hasLeaft == false) {
+
+                finalLeaf = false;
+            }
+        }
+
+        return finalLeaf;
     }
 
     @FXML
@@ -330,5 +385,3 @@ public class EditTreeController implements Initializable {
         }
     }
 }
-
-
