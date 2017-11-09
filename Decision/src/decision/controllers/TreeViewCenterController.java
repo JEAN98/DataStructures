@@ -109,6 +109,7 @@ public class TreeViewCenterController implements Initializable {
         costomCell();
         
         numberOfCombination.setText(String.valueOf(this.tree.numberOfCombinations()));
+        averageOfSteps.setText(String.valueOf(this.tree.averageOfsteps()));
     }
 
     private void load(TreeNode root, TreeItem<TreeNode> rootItem) {

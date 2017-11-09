@@ -61,9 +61,9 @@ public class Tree {
         return numberOfCombinations;
     }
 
-    public int averageOfsteps() {
+    public float averageOfsteps() {
 
-        int averageOfsteps = 0;
+        float averageOfsteps = 0;
         int Combinations = numberOfCombinations();
         int[] steps;
 
@@ -81,7 +81,13 @@ public class Tree {
                     i++;
                 }
                 
-//                averageOfsteps = 
+                int j = 0;
+                for (int value : steps) {
+
+                    j += value;
+                }
+                
+                averageOfsteps = (float)j/(float)Combinations;
             }
         }
 
