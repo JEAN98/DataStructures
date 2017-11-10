@@ -18,8 +18,8 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
                <children>
-                  <TextField fx:id="loginDNI" promptText="DNI" />
-                  <PasswordField fx:id="loginPassword" promptText="Password" />
+                  <TextField fx:id="loginDNI" focusTraversable="false" promptText="DNI" />
+                  <PasswordField fx:id="loginPassword" focusTraversable="false" promptText="Password" />
                   <Button fx:id="loginButtom" mnemonicParsing="false" onAction="#logIn" styleClass="success" text="Login" />
                </children>
             </HBox>
@@ -52,21 +52,21 @@
          <children>
             <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="card">
                <children>
-                  <TextField fx:id="singupDNI" promptText="DNI" />
-                  <TextField fx:id="singupFullName" promptText="Full Name" />
-                  <TextField fx:id="singupAge" promptText="Age" />
+                  <TextField fx:id="singupDNI" focusTraversable="false" promptText="DNI" />
+                  <TextField fx:id="singupFullName" focusTraversable="false" promptText="Full Name" />
+                  <TextField fx:id="singupAge" focusTraversable="false" promptText="Age" />
                   <HBox spacing="10.0">
                      <children>
-                        <RadioButton fx:id="singupMale" mnemonicParsing="false" text="Male">
+                        <RadioButton fx:id="singupMale" focusTraversable="false" mnemonicParsing="false" text="Male">
                            <toggleGroup>
                               <ToggleGroup fx:id="sex" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="singupFemale" mnemonicParsing="false" text="Female" toggleGroup="$sex" />
+                        <RadioButton fx:id="singupFemale" focusTraversable="false" mnemonicParsing="false" text="Female" toggleGroup="$sex" />
                      </children>
                   </HBox>
-                  <PasswordField fx:id="singupPassword" promptText="Password" />
-                  <PasswordField fx:id="singupConfirmPassword" promptText="Confirm Password" />
+                  <PasswordField fx:id="singupPassword" focusTraversable="false" promptText="Password" />
+                  <PasswordField fx:id="singupConfirmPassword" focusTraversable="false" promptText="Confirm Password" />
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Button fx:id="singupButtom" mnemonicParsing="false" onAction="#SingUp" styleClass="info" text="SingUp" />

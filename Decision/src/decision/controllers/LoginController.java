@@ -12,6 +12,8 @@ import decision.User;
 import decision.UserControl;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,6 +76,16 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        singupAge.textProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("|[-\\+]?|[-\\+]?\\d+\\.?|[-\\+]?\\d+\\.?\\d+")) {
+                    singupAge.setText(oldValue);
+                }
+            }
+        });
     }
 
     @FXML
@@ -89,17 +101,17 @@ public class LoginController implements Initializable {
                         .position(Pos.TOP_RIGHT)
                         .showError();
             }
-        }
-        else{
-             Notifications.create()
-                        .title("Login")
-                        .text("You must fill all inputs!")
-                        .position(Pos.TOP_RIGHT)
-                        .showError();
+        } else {
+            Notifications.create()
+                    .title("Login")
+                    .text("You must fill all inputs!")
+                    .position(Pos.TOP_RIGHT)
+                    .showError();
         }
     }
-    private boolean verifyInformation(){
-        if(loginDNI.getText().equals("")|| loginPassword.getText().equals("")){
+
+    private boolean verifyInformation() {
+        if (loginDNI.getText().equals("") || loginPassword.getText().equals("")) {
             return false;
         }
         return true;
@@ -162,23 +174,23 @@ public class LoginController implements Initializable {
         }
 
     }
-    private Boolean verifyInpustSingUp(){
+
+    private Boolean verifyInpustSingUp() {
         if (singupFullName.getText().equals("") || singupDNI.getText().equals("") || singupAge.getText().equals("") || singupPassword.getText().equals("")) {
             return false;
         }
         return true;
     }
-    
-    private void cleanInputs(){
-        singupAge.setText("");
-        singupDNI.setText("");
-        singupAge.setText("");
-        singupPassword.setText("");
-        singupFullName.setText("");
-        loginDNI.setText("");
-        loginPassword.setText("");
+
+    private void cleanInputs() {
+        singupAge.clear();
+        singupDNI.clear();
+        singupAge.clear();
+        singupPassword.clear();
+        singupConfirmPassword.clear();
+        singupFullName.clear();
+        loginDNI.clear();
+        loginPassword.clear();
     }
-            
-    
-       
+
 }
