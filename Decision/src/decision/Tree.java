@@ -126,6 +126,7 @@ public class Tree {
         for (int i = 1; i < listRoutes.length; i++) {
             if (listRoutes[i].getListNodes().size() < route.getListNodes().size()) {
                 result.clear();
+                route = listRoutes[i];
                 result.add(listRoutes[i]);
             } else if (listRoutes[i].getListNodes().size() == route.getListNodes().size()) {
                 result.add(listRoutes[i]);
@@ -151,6 +152,7 @@ public class Tree {
       for (int i = 1; i < listRoutes.length; i++){
           if(listRoutes[i].getListNodes().size() > route.getListNodes().size()){
               result.clear();
+              route = listRoutes[i];
               result.add(listRoutes[i]);
           }
           else if(listRoutes[i].getListNodes().size() == route.getListNodes().size()){
