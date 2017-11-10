@@ -9,16 +9,23 @@ import decision.Decision;
 import decision.Desission;
 import decision.Leaf;
 import decision.Root;
+import decision.Route;
 import decision.Tree;
 import decision.TreeNode;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
@@ -51,6 +58,9 @@ public class TreeViewCenterController implements Initializable {
     private Decision decision;
     private Tree tree;
     private boolean isShowtree;
+    private final BooleanProperty showShort = new SimpleBooleanProperty(false);
+    private final BooleanProperty showLong = new SimpleBooleanProperty(false);
+    private ArrayList<TreeNode> listNodes = new ArrayList<>();
 
     /**
      * Initializes the controller class.
@@ -200,6 +210,28 @@ public class TreeViewCenterController implements Initializable {
 
                             }
 
+                            if (showLong.getValue()) {
+
+                                for (TreeNode node : listNodes) {
+
+                                    if (item == node) {
+
+                                        itemView.getStyleClass().add("route");
+                                    }
+                                }
+                            }
+
+                            if (showShort.getValue()) {
+
+                                for (TreeNode node : listNodes) {
+
+                                    if (item == node) {
+
+                                        itemView.getStyleClass().add("route");
+                                    }
+                                }
+                            }
+
                             setGraphic(itemView);
                         } else {
 
@@ -215,9 +247,71 @@ public class TreeViewCenterController implements Initializable {
 
     @FXML
     private void showShorter(ActionEvent event) {
+
+        treeView.setRoot(null);
+
+        TreeNode rootNodeTree = tree.getRoot();
+
+        if (rootNodeTree != null) {
+
+            TreeItem<TreeNode> rootNode = new TreeItem<>(rootNodeTree);
+            load(rootNodeTree, rootNode);
+
+            treeView.setRoot(rootNode);
+            rootNode.setExpanded(true);
+
+            ArrayList<TreeNode> listNodes = new ArrayList<>();
+
+            for (Route route : tree.getShortNo()) {
+
+                if (route != null) {
+                    listNodes.addAll(route.getListNodes());
+                }
+            }
+
+            for (Route route : tree.getShortYes()) {
+                if (route != null) {
+
+                    listNodes.addAll(route.getListNodes());
+                }
+            }
+
+            this.listNodes = listNodes;
+        }
     }
 
     @FXML
     private void showLongest(ActionEvent event) {
+
+        treeView.setRoot(null);
+
+        TreeNode rootNodeTree = tree.getRoot();
+
+        if (rootNodeTree != null) {
+
+            TreeItem<TreeNode> rootNode = new TreeItem<>(rootNodeTree);
+            load(rootNodeTree, rootNode);
+
+            treeView.setRoot(rootNode);
+            rootNode.setExpanded(true);
+
+            ArrayList<TreeNode> listNodes = new ArrayList<>();
+
+            for (Route route : tree.getLargeNo()) {
+                if (route != null) {
+
+                    listNodes.addAll(route.getListNodes());
+                }
+            }
+
+            for (Route route : tree.getLargeYes()) {
+                if (route != null) {
+
+                    listNodes.addAll(route.getListNodes());
+                }
+            }
+
+            this.listNodes = listNodes;
+        }
     }
 }

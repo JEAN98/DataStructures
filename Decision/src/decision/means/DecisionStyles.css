@@ -56,3 +56,8 @@ and open the template in the editor.
     -fx-background-color: rgb(77, 191, 84); 
 }
 
+.route {
+    
+    -fx-border-color: rgb(112,251,255);
+    -fx-border-width: 2px;
+}
