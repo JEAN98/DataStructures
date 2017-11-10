@@ -117,7 +117,7 @@ public class Tree {
    public ArrayList<Route> getShortNo(){
     return getShort(false);
   } 
-   public ArrayList<Route> getShort(Boolean bus){
+   private ArrayList<Route> getShort(Boolean bus){
         Route[] listRoutes = auxSearchNodesByStatus(bus);
         ArrayList<Route> result = new ArrayList<>();
         //result.add(listRoutes[0]);
@@ -143,7 +143,7 @@ public class Tree {
         //result.add(listRoutes[0]);
     }
 
-   public ArrayList<Route> getLarge(Boolean bus){
+   private ArrayList<Route> getLarge(Boolean bus){
       Route[] listRoutes = auxSearchNodesByStatus(bus);
       ArrayList<Route> result = new ArrayList<>();
       Route route = listRoutes[0];
