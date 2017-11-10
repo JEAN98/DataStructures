@@ -13,13 +13,11 @@ import java.util.ArrayList;
  */
 public class TreeNode {
 
-    private int id;
     private TreeNodeType treeNodeType;
     private TreeNode[] childs;
     private int childCount;
 
-    public TreeNode(int id, TreeNodeType treeNodeType) {
-        this.id = id;
+    public TreeNode( TreeNodeType treeNodeType) {
         this.treeNodeType = treeNodeType;
         this.childCount = 0;
         this.childs = new TreeNode[0];
@@ -53,14 +51,6 @@ public class TreeNode {
 
     public void setTreeNodeType(TreeNodeType treeNodeType) {
         this.treeNodeType = treeNodeType;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void getShorRoutebyLeafYes() {

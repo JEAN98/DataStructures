@@ -194,7 +194,8 @@ public class TreeViewCenterController implements Initializable {
                                         Label answer = new Label(leaft.getAnswer());
                                         answer.getStyleClass().addAll("headerText");
 
-                                        Label answerTree = new Label(leaft.getAnswerTree());
+                                        String s = (leaft.getAnswerTree()) ? "Yes" : "No";
+                                        Label answerTree = new Label(s);
                                         answerTree.getStyleClass().addAll("headerText");
 
                                         itemView.getChildren().addAll(title, answer, answerTree);

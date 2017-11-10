@@ -12,19 +12,19 @@ package decision;
 public class Leaf extends TreeNode {
 
     private String answer;
-    private String answerTree;
+    private boolean answerTree;
 
-    public Leaf(String question, String answerTree, int id, TreeNodeType treeNodeType) {
-        super(id, treeNodeType);
+    public Leaf(String question, boolean answerTree, TreeNodeType treeNodeType) {
+        super( treeNodeType);
         this.answer = question;
         this.answerTree = answerTree;
     }
 
-    public String getAnswerTree() {
+    public boolean getAnswerTree() {
         return answerTree;
     }
 
-    public void setAnswerTree(String answer) {
+    public void setAnswerTree(boolean answer) {
         this.answerTree = answer;
     }
 

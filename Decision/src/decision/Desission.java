@@ -14,8 +14,8 @@ public class Desission extends TreeNode {
     private String question;
     private String answer;
 
-    public Desission(String question, String answer, int id, TreeNodeType treeNodeType) {
-        super(id, treeNodeType);
+    public Desission(String question, String answer, TreeNodeType treeNodeType) {
+        super(treeNodeType);
         this.question = question;
         this.answer = answer;
     }

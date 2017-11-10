@@ -29,8 +29,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -66,7 +68,7 @@ public class EditTreeController implements Initializable {
     @FXML
     private TextArea answerLeaft;
     @FXML
-    private TextArea answerTree;
+    private ToggleGroup answerTree;
 
     private Decision decision;
     private Tree treeControl;
@@ -75,6 +77,10 @@ public class EditTreeController implements Initializable {
     private TreeNode rootNodeTree;
     private boolean haveRoot = false;
     private ArrayList<Boolean> listVerify;
+    @FXML
+    private RadioButton yesAnswerTree;
+    @FXML
+    private RadioButton noAnswerTree;
 
     /**
      * Initializes the controller class.
@@ -208,7 +214,8 @@ public class EditTreeController implements Initializable {
                                         Label answer = new Label(leaft.getAnswer());
                                         answer.getStyleClass().addAll("headerText");
 
-                                        Label answerTree = new Label(leaft.getAnswerTree());
+                                        String s = (leaft.getAnswerTree()) ? "Yes" : "No";
+                                        Label answerTree = new Label(s);
                                         answerTree.getStyleClass().addAll("headerText");
 
                                         itemView.getChildren().addAll(title, answer, answerTree);
@@ -349,7 +356,7 @@ public class EditTreeController implements Initializable {
     private void addRoot(ActionEvent event
     ) {
 
-        Root root = new Root(questionRoot.getText(), 0, Root);
+        Root root = new Root(questionRoot.getText(), Root);
         rootNodeTree = root;
         this.rootNode = new TreeItem<>(rootNodeTree);
 
@@ -364,7 +371,7 @@ public class EditTreeController implements Initializable {
 
         if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {
 
-            Desission decision = new Desission(questionDecision.getText(), answerDecision.getText(), 0, Desission);
+            Desission decision = new Desission(questionDecision.getText(), answerDecision.getText(), Desission);
 
             selectNode.getChildren().add(new TreeItem<>(decision));
             selectNode.setExpanded(true);
@@ -376,9 +383,9 @@ public class EditTreeController implements Initializable {
     private void addLeaft(ActionEvent event
     ) {
 
-        if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {
+        if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {            
 
-            Leaf leaf = new Leaf(answerLeaft.getText(), answerTree.getText(), 0, TreeNodeType.Leaf);
+            Leaf leaf = new Leaf(answerLeaft.getText(), yesAnswerTree.isSelected(), TreeNodeType.Leaf);
 
             selectNode.getChildren().add(new TreeItem<>(leaf));
             selectNode.setExpanded(true);
