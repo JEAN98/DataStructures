@@ -356,7 +356,7 @@ public class EditTreeController implements Initializable {
     private void addRoot(ActionEvent event
     ) {
 
-        Root root = new Root(questionRoot.getText(), Root);
+        Root root = new Root(questionRoot.getText());
         rootNodeTree = root;
         this.rootNode = new TreeItem<>(rootNodeTree);
 
@@ -371,7 +371,7 @@ public class EditTreeController implements Initializable {
 
         if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {
 
-            Desission decision = new Desission(questionDecision.getText(), answerDecision.getText(), Desission);
+            Desission decision = new Desission(questionDecision.getText(), answerDecision.getText());
 
             selectNode.getChildren().add(new TreeItem<>(decision));
             selectNode.setExpanded(true);
@@ -385,7 +385,7 @@ public class EditTreeController implements Initializable {
 
         if ((selectNode != null) && (selectNode.getValue().getTreeNodeType() != TreeNodeType.Leaf)) {            
 
-            Leaf leaf = new Leaf(answerLeaft.getText(), yesAnswerTree.isSelected(), TreeNodeType.Leaf);
+            Leaf leaf = new Leaf(answerLeaft.getText(), yesAnswerTree.isSelected());
 
             selectNode.getChildren().add(new TreeItem<>(leaf));
             selectNode.setExpanded(true);

@@ -149,6 +149,8 @@ public class ViewCatalogController implements Initializable {
 
     @FXML
     private void use(ActionEvent event) {
+        
+        decision.showUse(treeSelect);
     }
 
     @FXML

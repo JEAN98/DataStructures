@@ -15,6 +15,7 @@ public class TreeNode {
 
     private TreeNodeType treeNodeType;
     private TreeNode[] childs;
+    private TreeNode selectedNode;
     private int childCount;
 
     public TreeNode( TreeNodeType treeNodeType) {
@@ -72,6 +73,14 @@ public class TreeNode {
     public void setChildCount(int childCount) {
         this.childCount = childCount;
         this.childs = new TreeNode[this.childCount];
+    }
+
+    public TreeNode getSelectedNode() {
+        return selectedNode;
+    }
+
+    public void setSelectedNode(TreeNode selectedNode) {
+        this.selectedNode = selectedNode;
     }
 
 }

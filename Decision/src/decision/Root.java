@@ -13,8 +13,8 @@ public class Root extends TreeNode {
 
     private String question;
 
-    public Root(String question, TreeNodeType treeNodeType) {
-        super( treeNodeType);
+    public Root(String question) {
+        super( TreeNodeType.Root);
         this.question = question;
     }
 

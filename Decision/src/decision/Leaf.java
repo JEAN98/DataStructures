@@ -14,9 +14,9 @@ public class Leaf extends TreeNode {
     private String answer;
     private boolean answerTree;
 
-    public Leaf(String question, boolean answerTree, TreeNodeType treeNodeType) {
-        super( treeNodeType);
-        this.answer = question;
+    public Leaf(String answer, boolean answerTree) {
+        super( TreeNodeType.Leaf);
+        this.answer = answer;
         this.answerTree = answerTree;
     }
 

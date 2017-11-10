@@ -8,6 +8,7 @@ package decision;
 import decision.controllers.EditTreeController;
 import decision.controllers.LoginController;
 import decision.controllers.TreeViewCenterController;
+import decision.controllers.UseController;
 import decision.controllers.ViewCatalogController;
 import decision.controllers.ViewProphileController;
 import decision.controllers.ViewTreeController;
@@ -34,6 +35,7 @@ public class Decision extends Application {
     private BorderPane viewTree;
     private BorderPane editTree;
     private BorderPane treeViewCenter;
+    private BorderPane use;
 
     //Controller
     private LoginController loginController;
@@ -42,11 +44,12 @@ public class Decision extends Application {
     private ViewTreeController viewTreeController;
     private EditTreeController editTreeController;
     private TreeViewCenterController treeViewCenterController;
+    private UseController useController;
 
     //System
     private UserControl userControl;
     private GeneratorID generatorID;
-    
+
     //Test
     private Tester tester = new Tester();
 
@@ -62,7 +65,7 @@ public class Decision extends Application {
         scene = new Scene(root, 720, 480);
         scene.getStylesheets().add("/decision/means/bootstrap3.css");
         scene.getStylesheets().add("/decision/means/DecisionStyles.css");
-        
+
         //Test
         tester.test(userControl, generatorID);
 
@@ -97,14 +100,14 @@ public class Decision extends Application {
         this.viewTree = (BorderPane) loader3.load();
 
         viewTreeController = loader3.getController();
-        
+
         //Build catalog
         FXMLLoader loader4 = new FXMLLoader();
         loader4.setLocation(Decision.class.getResource("/decision/means/ViewCatalog.fxml"));
         this.viewCatalog = (BorderPane) loader4.load();
 
         viewCatalogController = loader4.getController();
-        
+
         //Build catalog
         FXMLLoader loader5 = new FXMLLoader();
         loader5.setLocation(Decision.class.getResource("/decision/means/EditTree.fxml"));
@@ -118,6 +121,13 @@ public class Decision extends Application {
         this.treeViewCenter = (BorderPane) loader6.load();
 
         treeViewCenterController = loader6.getController();
+
+        //Build catalog
+        FXMLLoader loader7 = new FXMLLoader();
+        loader7.setLocation(Decision.class.getResource("/decision/means/Use.fxml"));
+        this.use = (BorderPane) loader7.load();
+
+        useController = loader7.getController();
     }
 
     private void initSystem() {
@@ -145,25 +155,32 @@ public class Decision extends Application {
         viewTreeController.start(this);
 
     }
-    
-     public void showCatalog() {
+
+    public void showCatalog() {
 
         root.setCenter(viewCatalog);
         viewCatalogController.start(this);
 
     }
-     
-     public void showEditTree(Tree tree) {
+
+    public void showEditTree(Tree tree) {
 
         root.setCenter(editTree);
         editTreeController.start(tree, this);
 
     }
-     
-     public void showTreeViewCenter(Tree tree, boolean isShowtree) {
+
+    public void showTreeViewCenter(Tree tree, boolean isShowtree) {
 
         root.setCenter(treeViewCenter);
         treeViewCenterController.start(tree, isShowtree, this);
+
+    }
+
+    public void showUse(Tree tree) {
+
+        root.setCenter(use);
+        useController.start(tree, this);
 
     }
 
