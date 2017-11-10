@@ -120,18 +120,20 @@ public class Tree {
    private ArrayList<Route> getShort(Boolean bus){
         Route[] listRoutes = auxSearchNodesByStatus(bus);
         ArrayList<Route> result = new ArrayList<>();
-        //result.add(listRoutes[0]);
-        Route route = listRoutes[0];
-        result.add(route);
-        for (int i = 1; i < listRoutes.length; i++) {
-            if (listRoutes[i].getListNodes().size() < route.getListNodes().size()) {
-                result.clear();
-                route = listRoutes[i];
-                result.add(listRoutes[i]);
-            } else if (listRoutes[i].getListNodes().size() == route.getListNodes().size()) {
-                result.add(listRoutes[i]);
-            }
-        }
+       //result.add(listRoutes[0]);
+       Route route = listRoutes[0];
+       result.add(route);
+       for (int i = 1; i < listRoutes.length; i++) {
+           if (listRoutes[i] != null) {
+               if (listRoutes[i].getListNodes().size() < route.getListNodes().size()) {
+                   result.clear();
+                   route = listRoutes[i];
+                   result.add(listRoutes[i]);
+               } else if (listRoutes[i].getListNodes().size() == route.getListNodes().size()) {
+                   result.add(listRoutes[i]);
+               }
+           }
+       }
         return result;
     }
    /**
@@ -152,16 +154,18 @@ public class Tree {
       ArrayList<Route> result = new ArrayList<>();
       Route route = listRoutes[0];
       result.add(route);
-      for (int i = 1; i < listRoutes.length; i++){
-          if(listRoutes[i].getListNodes().size() > route.getListNodes().size()){
-              result.clear();
-              route = listRoutes[i];
-              result.add(listRoutes[i]);
-          }
-          else if(listRoutes[i].getListNodes().size() == route.getListNodes().size()){
-              result.add(listRoutes[i]);
-          }
-      }
+       for (int i = 1; i < listRoutes.length; i++) {
+           if (listRoutes[i] != null) {
+               if (listRoutes[i].getListNodes().size() > route.getListNodes().size()) {
+                   result.clear();
+                   route = listRoutes[i];
+                   result.add(listRoutes[i]);
+               } else if (listRoutes[i].getListNodes().size() == route.getListNodes().size()) {
+                   result.add(listRoutes[i]);
+               }
+           }
+
+       }
       return result;
    }
   

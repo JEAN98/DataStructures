@@ -9,6 +9,7 @@ import decision.Decision;
 import decision.Desission;
 import decision.Leaf;
 import decision.Root;
+import decision.Route;
 import decision.Tree;
 import decision.TreeNode;
 import decision.TreeNodeType;
@@ -127,6 +128,8 @@ public class EditTreeController implements Initializable {
         }
 
         rootNode.setExpanded(true);
+        
+       ArrayList<Route> x = treeControl.getLargeYes();
         costomCell();
 
         uiControl();
