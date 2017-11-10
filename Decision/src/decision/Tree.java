@@ -117,6 +117,11 @@ public class Tree {
    public ArrayList<Route> getShortNo(){
     return getShort(false);
   } 
+   /**
+    * Get Short list
+    * @param bus
+    * @return 
+    */
    private ArrayList<Route> getShort(Boolean bus){
         Route[] listRoutes = auxSearchNodesByStatus(bus);
         ArrayList<Route> result = new ArrayList<>();
