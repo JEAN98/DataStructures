@@ -142,14 +142,24 @@ public class LoginController implements Initializable {
                             singupPassword.getText()
                     );
 
-                    userControl.addUser(newUser);
+                    if (!userControl.userExist(newUser)) {
+                        userControl.addUser(newUser);
 
-                    Notifications.create()
-                            .title("Sing Up")
-                            .text("Successful registration.")
-                            .position(Pos.TOP_RIGHT)
-                            .showConfirm();
-                    cleanInputs();
+                        Notifications.create()
+                                .title("Sing Up")
+                                .text("Successful registration.")
+                                .position(Pos.TOP_RIGHT)
+                                .showConfirm();
+                        cleanInputs();
+
+                    } else {
+                        Notifications.create()
+                                .title("Sing Up")
+                                .text("User already exists..")
+                                .position(Pos.TOP_RIGHT)
+                                .showError();
+                        cleanInputs();
+                    }
                 } else {
 
                     Notifications.create()
