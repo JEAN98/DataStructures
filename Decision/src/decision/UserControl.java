@@ -109,6 +109,27 @@ public class UserControl {
         }
         return false;
     }
+    
+    public boolean userExist(User user){
+        
+        if(root != null){
+        
+            User temp = root;
+
+            while (temp != null) {
+
+                if (temp.getDni().equals(user.getDni())) {
+
+                    this.session = temp;
+                    return true;
+                }
+
+                temp = temp.getNext();
+            }
+        }
+    
+        return false;
+    }
 
     /**
      * Closes the current session.
