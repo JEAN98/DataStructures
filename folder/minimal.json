@@ -1,0 +1,15 @@
+{
+  "nodes":[
+{ "key":"Andy", "color":"lightblue" },
+{ "key":"Beta", "color":"orange" },
+{ "key":"Bartolo", "color":"lightgreen" },
+{ "key":"FUEEE", "color":"pink" }
+  ],
+  "links":[
+{ "from":"Andy", "to":"Beta" },
+{ "from":"Andy", "to":"Bartolo" },
+{ "from":"Beta", "to":"Beta" },
+{ "from":"Bartolo", "to":"FUEEE" },
+{ "from":"FUEEE", "to":"Alpha" }
+  ]
+}
